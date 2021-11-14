@@ -19,6 +19,17 @@ class EmpresasFactory extends Factory
      *
      * @return array
      */
+
+    /**
+     * Get a new Faker instance.
+     *
+     * @return \Faker\Generator
+     */
+    public function withFaker()
+    {
+        return \Faker\Factory::create('pt_BR');
+    }
+
     public function definition()
     {
         return [
