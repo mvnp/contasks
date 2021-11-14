@@ -3,39 +3,26 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Empresas;
+use App\Api\ApiMessages;
 
 class EmpresasController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+
+    private $empresas;
+
+    public function __construct(Empresas $empresas)
+    {
+        $this->empresas = $empresas;
+    }
+
     public function index()
     {
-        //
+        $empresas = $this->empresas->paginate('10');
+
+        return response()->json($empresas, 200);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
-    }
 
     /**
      * Display the specified resource.
@@ -44,6 +31,44 @@ class EmpresasController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function show($id)
+    {
+        try {
+
+            $empresas = $this->empresas->findOrFail($id);
+
+            return response()->json([
+                'data' => $empresas
+            ], 200);
+        } catch (\Exception $e) {
+            $message = new ApiMessages($e->getMessage());
+            return response()->json([$message->getMessage()], 401);
+        }
+    }
+
+    public function store(Request $request)
+    {
+        $data = $request->all();
+
+        try {
+
+            $empresas = $this->empresas->create($data);
+
+            return response()->json([
+                'data' => [
+                    'msg' => 'Empresa cadastrada com sucesso!'
+                ]
+            ], 200);
+        } catch (\Exception $e) {
+            $message = new ApiMessages($e->getMessage());
+            return response()->json([$message->getMessage()], 401);
+        }
+    }
+    /**
+     * Show the form for creating a new resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function create()
     {
         //
     }
