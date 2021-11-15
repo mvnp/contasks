@@ -22,9 +22,13 @@ class EmpresasController extends Controller
      */
     public function index()
     {
-
-        $empresas = $this->empresas->get();
-        return response()->json($empresas, 200);
+        try {
+            $empresas = $this->empresas->get();
+            return response()->json($empresas, 200);
+        }
+        catch (\Exception $e) {
+            return response()->json(['error' => $e->getMessage()], 401);
+        }
     }
 
     /**
@@ -42,7 +46,7 @@ class EmpresasController extends Controller
             return response()->json($empresa, 200);
         }
         catch (\Exception $e) {
-            return response()->json($e->getMessage(), 401);
+            return response()->json(['error' => $e->getMessage()], 401);
         }
     }
 
@@ -59,7 +63,7 @@ class EmpresasController extends Controller
             return response()->json(['data' => $empresa], 200);
         }
         catch (\Exception $e) {
-            return response()->json($e->getMessage(), 401);
+            return response()->json(['error' => $e->getMessage()], 401);
         }
     }
 
@@ -73,7 +77,7 @@ class EmpresasController extends Controller
             return response()->json($empresa, 200);
         }
         catch (\Exception $e) {
-            return response()->json($e->getMessage(), 401);
+            return response()->json(['error' => $e->getMessage()], 401);
         }
     }
 
@@ -92,7 +96,7 @@ class EmpresasController extends Controller
             return response()->json($empresa, 200);
         }
         catch (\Exception $e) {
-            return response()->json($e->getMessage(), 401);
+            return response()->json(['error' => $e->getMessage()], 401);
         }
     }
 }
