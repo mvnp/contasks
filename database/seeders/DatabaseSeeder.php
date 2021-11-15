@@ -18,7 +18,7 @@ class DatabaseSeeder extends Seeder
             // ConfigAtividadesTableSeeder::class,
             // ConfigSetoresTableSeeder::class,
             // ConfigTarefasTableSeeder::class,
-            EmpresasTableSeeder::class
+            // EmpresasTableSeeder::class
         ]);
     }
 }
