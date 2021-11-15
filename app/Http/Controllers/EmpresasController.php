@@ -87,7 +87,7 @@ class EmpresasController extends Controller
     {
         try {
 
-            $empresa = $this->realState->findOrFail($id);
+            $empresa = $this->empresas->findOrFail($id);
             $empresa->delete();
             return response()->json($empresa, 200);
         } catch (\Exception $e) {
