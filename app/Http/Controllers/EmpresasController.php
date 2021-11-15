@@ -2,10 +2,18 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Empresas;
+use Exception;
 use Illuminate\Http\Request;
 
 class EmpresasController extends Controller
 {
+    private $empresas;
+
+    public function __construct(Empresas $empresas){
+        $this->empresas = $empresas;
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -13,7 +21,13 @@ class EmpresasController extends Controller
      */
     public function index()
     {
-        //
+        $empresas = $this->empresas->all();
+
+        try {
+            return response()->json($empresas, 200);
+        } catch (\Exception $e) {
+            return response()->json(['error' => $e->getMessage()], 401);
+        }
     }
 
     /**
