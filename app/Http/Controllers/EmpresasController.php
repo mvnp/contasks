@@ -3,15 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Empresas;
-use Exception;
 use Illuminate\Http\Request;
-use Illuminate\Http\Response;
-use App\Http\Requests\EmpresaRequest;
 use App\Http\Controllers\Controller;
-use App\Http\Resources\EmpresaResource;
-use App\Api\ApiMessages;
-
-
 
 class EmpresasController extends Controller
 {
@@ -29,10 +22,12 @@ class EmpresasController extends Controller
      */
     public function index()
     {
-
-        $empresas = $this->empresas->get();
-
-        return response()->json($empresas, 200);
+        try {
+            $empresas = $this->empresas->get();
+            return response()->json($empresas, 200);
+        } catch (\Exception $e) {
+            return response()->json(['error' => $e->getMessage()], 401);
+        }
     }
 
     /**
@@ -46,16 +41,10 @@ class EmpresasController extends Controller
         $data = $request->all();
 
         try {
-
             $empresa = $this->empresas->create($data);
-
-            return response()->json([
-                'data' => $empresa
-
-            ], 200);
+            return response()->json($empresa, 200);
         } catch (\Exception $e) {
-            $message = new ApiMessages($e->getMessage());
-            return response()->json([$message->getMessage()], 401);
+            return response()->json(['error' => $e->getMessage()], 401);
         }
     }
 
@@ -68,15 +57,10 @@ class EmpresasController extends Controller
     public function show($id)
     {
         try {
-
             $empresa = $this->empresas->findOrFail($id);
-
-            return response()->json([
-                'data' => $empresa
-            ], 200);
+            return response()->json(['data' => $empresa], 200);
         } catch (\Exception $e) {
-            $message = new ApiMessages($e->getMessage());
-            return response()->json([$message->getMessage()], 401);
+            return response()->json(['error' => $e->getMessage()], 401);
         }
     }
 
@@ -85,16 +69,11 @@ class EmpresasController extends Controller
         $data = $request->all();
 
         try {
-
             $empresa = $this->empresas->findOrFail($id);
             $empresa->update($data);
-
-            return response()->json([
-                'data' => $empresa
-            ], 200);
+            return response()->json($empresa, 200);
         } catch (\Exception $e) {
-            $message = new ApiMessages($e->getMessage());
-            return response()->json([$message->getMessage()], 401);
+            return response()->json(['error' => $e->getMessage()], 401);
         }
     }
 
@@ -110,13 +89,9 @@ class EmpresasController extends Controller
 
             $empresa = $this->realState->findOrFail($id);
             $empresa->delete();
-
-            return response()->json([
-                'data' => $empresa
-            ], 200);
+            return response()->json($empresa, 200);
         } catch (\Exception $e) {
-            $message = new ApiMessages($e->getMessage());
-            return response()->json([$message->getMessage()], 401);
+            return response()->json(['error' => $e->getMessage()], 401);
         }
     }
 }
