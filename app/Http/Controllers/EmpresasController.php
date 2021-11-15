@@ -25,12 +25,8 @@ class EmpresasController extends Controller
         try {
             $empresas = $this->empresas->get();
             return response()->json($empresas, 200);
-<<<<<<< HEAD
-        } catch (\Exception $e) {
-=======
         }
         catch (\Exception $e) {
->>>>>>> 0cb72e3d52d92482fbf9142bc91eeb22b7539c59
             return response()->json(['error' => $e->getMessage()], 401);
         }
     }
@@ -48,12 +44,8 @@ class EmpresasController extends Controller
         try {
             $empresa = $this->empresas->create($data);
             return response()->json($empresa, 200);
-<<<<<<< HEAD
-        } catch (\Exception $e) {
-=======
         }
         catch (\Exception $e) {
->>>>>>> 0cb72e3d52d92482fbf9142bc91eeb22b7539c59
             return response()->json(['error' => $e->getMessage()], 401);
         }
     }
@@ -69,12 +61,8 @@ class EmpresasController extends Controller
         try {
             $empresa = $this->empresas->findOrFail($id);
             return response()->json(['data' => $empresa], 200);
-<<<<<<< HEAD
-        } catch (\Exception $e) {
-=======
         }
         catch (\Exception $e) {
->>>>>>> 0cb72e3d52d92482fbf9142bc91eeb22b7539c59
             return response()->json(['error' => $e->getMessage()], 401);
         }
     }
@@ -87,12 +75,8 @@ class EmpresasController extends Controller
             $empresa = $this->empresas->findOrFail($id);
             $empresa->update($data);
             return response()->json($empresa, 200);
-<<<<<<< HEAD
-        } catch (\Exception $e) {
-=======
         }
         catch (\Exception $e) {
->>>>>>> 0cb72e3d52d92482fbf9142bc91eeb22b7539c59
             return response()->json(['error' => $e->getMessage()], 401);
         }
     }
@@ -110,12 +94,8 @@ class EmpresasController extends Controller
             $empresa = $this->realState->findOrFail($id);
             $empresa->delete();
             return response()->json($empresa, 200);
-<<<<<<< HEAD
-        } catch (\Exception $e) {
-=======
         }
         catch (\Exception $e) {
->>>>>>> 0cb72e3d52d92482fbf9142bc91eeb22b7539c59
             return response()->json(['error' => $e->getMessage()], 401);
         }
     }
