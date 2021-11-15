@@ -28,6 +28,10 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
+
+
+
+Route::get('empresas', [EmpresasController::class, 'empresas']);
 Route::resource('dashboard', DashboardController::class);
 Route::resource('tarefas', TarefasController::class);
 Route::resource('setores', SetoresController::class);

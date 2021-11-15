@@ -8,4 +8,9 @@ use Illuminate\Database\Eloquent\Model;
 class Empresas extends Model
 {
     use HasFactory;
+
+    protected $table = 'empresas';
+    protected $fillable = [
+        'user_id', 'fantasia', 'razao', 'cnpj', 'rua', 'numero', 'completmento', 'bairro', 'cidade', 'estado', 'telefonePrincipal', 'telefoneSecundario'
+    ];
 }

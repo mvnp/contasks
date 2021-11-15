@@ -5,12 +5,20 @@ namespace App\Http\Controllers;
 use App\Models\Empresas;
 use Exception;
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
+use App\Http\Requests\EmpresaRequest;
+use App\Http\Controllers\Controller;
+use App\Http\Resources\EmpresaResource;
+use App\Api\ApiMessages;
+
+
 
 class EmpresasController extends Controller
 {
     private $empresas;
 
-    public function __construct(Empresas $empresas){
+    public function __construct(Empresas $empresas)
+    {
         $this->empresas = $empresas;
     }
 
@@ -21,23 +29,10 @@ class EmpresasController extends Controller
      */
     public function index()
     {
-        $empresas = $this->empresas->all();
 
-        try {
-            return response()->json($empresas, 200);
-        } catch (\Exception $e) {
-            return response()->json(['error' => $e->getMessage()], 401);
-        }
-    }
+        $empresas = $this->empresas->get();
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
+        return response()->json($empresas, 200);
     }
 
     /**
@@ -48,7 +43,20 @@ class EmpresasController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $data = $request->all();
+
+        try {
+
+            $empresa = $this->empresas->create($data);
+
+            return response()->json([
+                'data' => $empresa
+
+            ], 200);
+        } catch (\Exception $e) {
+            $message = new ApiMessages($e->getMessage());
+            return response()->json([$message->getMessage()], 401);
+        }
     }
 
     /**
@@ -59,30 +67,35 @@ class EmpresasController extends Controller
      */
     public function show($id)
     {
-        //
+        try {
+
+            $empresa = $this->empresas->findOrFail($id);
+
+            return response()->json([
+                'data' => $empresa
+            ], 200);
+        } catch (\Exception $e) {
+            $message = new ApiMessages($e->getMessage());
+            return response()->json([$message->getMessage()], 401);
+        }
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function update(Request $request, $id)
     {
-        //
+        $data = $request->all();
+
+        try {
+
+            $empresa = $this->empresas->findOrFail($id);
+            $empresa->update($data);
+
+            return response()->json([
+                'data' => $empresa
+            ], 200);
+        } catch (\Exception $e) {
+            $message = new ApiMessages($e->getMessage());
+            return response()->json([$message->getMessage()], 401);
+        }
     }
 
     /**
@@ -93,6 +106,17 @@ class EmpresasController extends Controller
      */
     public function destroy($id)
     {
-        //
+        try {
+
+            $empresa = $this->realState->findOrFail($id);
+            $empresa->delete();
+
+            return response()->json([
+                'data' => $empresa
+            ], 200);
+        } catch (\Exception $e) {
+            $message = new ApiMessages($e->getMessage());
+            return response()->json([$message->getMessage()], 401);
+        }
     }
 }
