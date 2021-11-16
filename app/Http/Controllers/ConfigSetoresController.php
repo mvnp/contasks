@@ -2,10 +2,19 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\ConfigSetores;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 
 class ConfigSetoresController extends Controller
 {
+    private $configSetores;
+
+    public function __construct(ConfigSetores $configSetores)
+    {
+        $this->configSetores = $configSetores;
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -13,18 +22,14 @@ class ConfigSetoresController extends Controller
      */
     public function index()
     {
-        //
+        try {
+            $configSetores = $this->configSetores->get();
+            return response()->json($configSetores, 200);
+        } catch (\Exception $e) {
+            return response()->json(['error' => $e->getMessage()], 401);
+        }
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
 
     /**
      * Store a newly created resource in storage.
@@ -34,7 +39,14 @@ class ConfigSetoresController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $data = $request->all();
+
+        try {
+            $configSetores = $this->configSetores->create($data);
+            return response()->json($configSetores, 200);
+        } catch (\Exception $e) {
+            return response()->json(['error' => $e->getMessage()], 401);
+        }
     }
 
     /**
@@ -45,18 +57,12 @@ class ConfigSetoresController extends Controller
      */
     public function show($id)
     {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
+        try {
+            $configSetores = $this->configSetores->findOrFail($id);
+            return response()->json(['data' => $configSetores], 200);
+        } catch (\Exception $e) {
+            return response()->json(['error' => $e->getMessage()], 401);
+        }
     }
 
     /**
@@ -68,7 +74,15 @@ class ConfigSetoresController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $data = $request->all();
+
+        try {
+            $configSetores = $this->configSetores->findOrFail($id);
+            $configSetores->update($data);
+            return response()->json($configSetores, 200);
+        } catch (\Exception $e) {
+            return response()->json(['error' => $e->getMessage()], 401);
+        }
     }
 
     /**
@@ -79,6 +93,13 @@ class ConfigSetoresController extends Controller
      */
     public function destroy($id)
     {
-        //
+        try {
+
+            $configSetores = $this->configSetores->findOrFail($id);
+            $configSetores->delete();
+            return response()->json($configSetores, 200);
+        } catch (\Exception $e) {
+            return response()->json(['error' => $e->getMessage()], 401);
+        }
     }
 }

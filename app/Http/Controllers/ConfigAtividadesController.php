@@ -2,21 +2,12 @@
 
 namespace App\Http\Controllers;
 
-<<<<<<< HEAD
-use App\Models\ConfigAtividades;
-use Illuminate\Http\Request;
-=======
 use Illuminate\Http\Request;
 use App\Models\ConfigAtividades;
->>>>>>> ee3b3fd1c6b22a460cf1f0bf1c013b581e353f55
 use App\Http\Controllers\Controller;
 
 class ConfigAtividadesController extends Controller
 {
-<<<<<<< HEAD
-
-=======
->>>>>>> ee3b3fd1c6b22a460cf1f0bf1c013b581e353f55
     private $configAtividades;
 
     public function __construct(ConfigAtividades $confiAtividades)
