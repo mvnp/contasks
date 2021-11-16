@@ -8,11 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class ConfigSetores extends Model
 {
     use HasFactory;
+
     protected $table = 'config_setores';
     protected $fillable = ['titulo', 'descricao'];
-
-    //public function configTarefas()
-    //{
-    //    return $this->hasMany(ConfigTarefas::class);
-    //}
 }
