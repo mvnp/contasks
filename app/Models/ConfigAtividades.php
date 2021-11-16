@@ -14,6 +14,6 @@ class ConfigAtividades extends Model
 
     public function configTarefas()
     {
-        return $this->hasMany(ConfigTarefas::class, 'atividade_id', 'id');
+        return $this->hasMany(ConfigTarefas::class);
     }
 }

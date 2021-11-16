@@ -13,6 +13,6 @@ class ConfigTarefas extends Model
 
     public function configAtividades()
     {
-        return $this->belongsTo(ConfigAtividades::class);
+        return $this->belongsTo(ConfigAtividades::class, 'atividade_id', 'id');
     }
 }
