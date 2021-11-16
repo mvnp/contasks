@@ -10,9 +10,9 @@ class ConfigAtividadesController extends Controller
 {
     private $configAtividades;
 
-    public function __construct(ConfigAtividades $confiAtividades)
+    public function __construct(ConfigAtividades $configAtividades)
     {
-        $this->confiAtividades = $confiAtividades;
+        $this->configAtividades = $configAtividades;
     }
 
     /**
@@ -30,6 +30,7 @@ class ConfigAtividadesController extends Controller
         }
     }
 
+
     /**
      * Store a newly created resource in storage.
      *
@@ -41,8 +42,8 @@ class ConfigAtividadesController extends Controller
         $data = $request->all();
 
         try {
-            $confiAtividades = $this->confiAtividades->create($data);
-            return response()->json($confiAtividades, 200);
+            $configAtividades = $this->configAtividades->create($data);
+            return response()->json($configAtividades, 200);
         } catch (\Exception $e) {
             return response()->json(['error' => $e->getMessage()], 401);
         }
@@ -57,8 +58,8 @@ class ConfigAtividadesController extends Controller
     public function show($id)
     {
         try {
-            $confiAtividades = $this->confiAtividades->findOrFail($id);
-            return response()->json(['data' => $confiAtividades], 200);
+            $configAtividades = $this->configAtividades->findOrFail($id);
+            return response()->json(['data' => $configAtividades], 200);
         } catch (\Exception $e) {
             return response()->json(['error' => $e->getMessage()], 401);
         }
@@ -76,9 +77,9 @@ class ConfigAtividadesController extends Controller
         $data = $request->all();
 
         try {
-            $confiAtividades = $this->confiAtividades->findOrFail($id);
-            $confiAtividades->update($data);
-            return response()->json($confiAtividades, 200);
+            $configAtividades = $this->configAtividades->findOrFail($id);
+            $configAtividades->update($data);
+            return response()->json($configAtividades, 200);
         } catch (\Exception $e) {
             return response()->json(['error' => $e->getMessage()], 401);
         }
@@ -94,9 +95,9 @@ class ConfigAtividadesController extends Controller
     {
         try {
 
-            $confiAtividades = $this->confiAtividades->findOrFail($id);
-            $confiAtividades->delete();
-            return response()->json($confiAtividades, 200);
+            $configAtividades = $this->configAtividades->findOrFail($id);
+            $configAtividades->delete();
+            return response()->json($configAtividades, 200);
         } catch (\Exception $e) {
             return response()->json(['error' => $e->getMessage()], 401);
         }

@@ -9,7 +9,7 @@ class ConfigSetores extends Model
 {
     use HasFactory;
     protected $table = 'config_setores';
-    protected $fillable = ['descricao'];
+    protected $fillable = ['titulo', 'descricao'];
 
     //public function configTarefas()
     //{
