@@ -10,9 +10,9 @@ class ConfigAtividadesController extends Controller
 {
     private $configAtividades;
 
-    public function __construct(ConfigAtividades $configAtividades)
+    public function __construct(ConfigAtividades $confiAtividades)
     {
-        $this->configAtividades = $configAtividades;
+        $this->confiAtividades = $confiAtividades;
     }
 
     /**
@@ -41,8 +41,8 @@ class ConfigAtividadesController extends Controller
         $data = $request->all();
 
         try {
-            $tarefa = $this->ConfigTarefas->create($data);
-            return response()->json($tarefa, 200);
+            $confiAtividades = $this->confiAtividades->create($data);
+            return response()->json($confiAtividades, 200);
         } catch (\Exception $e) {
             return response()->json(['error' => $e->getMessage()], 401);
         }
@@ -57,8 +57,8 @@ class ConfigAtividadesController extends Controller
     public function show($id)
     {
         try {
-            $configtarefa = $this->ConfigTarefas->findOrFail($id);
-            return response()->json(['data' => $configtarefa], 200);
+            $confiAtividades = $this->confiAtividades->findOrFail($id);
+            return response()->json(['data' => $confiAtividades], 200);
         } catch (\Exception $e) {
             return response()->json(['error' => $e->getMessage()], 401);
         }
@@ -76,9 +76,9 @@ class ConfigAtividadesController extends Controller
         $data = $request->all();
 
         try {
-            $configtarefa = $this->ConfigTarefas->findOrFail($id);
-            $configtarefa->update($data);
-            return response()->json($configtarefa, 200);
+            $confiAtividades = $this->confiAtividades->findOrFail($id);
+            $confiAtividades->update($data);
+            return response()->json($confiAtividades, 200);
         } catch (\Exception $e) {
             return response()->json(['error' => $e->getMessage()], 401);
         }
@@ -94,9 +94,9 @@ class ConfigAtividadesController extends Controller
     {
         try {
 
-            $configtarefa = $this->ConfigTarefas->findOrFail($id);
-            $configtarefa->delete();
-            return response()->json($configtarefa, 200);
+            $confiAtividades = $this->confiAtividades->findOrFail($id);
+            $confiAtividades->delete();
+            return response()->json($confiAtividades, 200);
         } catch (\Exception $e) {
             return response()->json(['error' => $e->getMessage()], 401);
         }
