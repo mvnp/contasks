@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AtividadesController;
 use App\Http\Controllers\BoletosController;
+use App\Http\Controllers\ConfigAtividadesController;
 use App\Http\Controllers\ConfigSetoresController;
 use App\Http\Controllers\ConfigTarefasController;
 use App\Http\Controllers\DashboardController;
@@ -9,7 +10,6 @@ use App\Http\Controllers\EmpresasController;
 use App\Http\Controllers\RelatoriosController;
 use App\Http\Controllers\SetoresController;
 use App\Http\Controllers\TarefasController;
-use App\Models\ConfigAtividades;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -41,5 +41,5 @@ Route::resource('atividades', AtividadesController::class);
 Route::resource('relatorios', RelatoriosController::class);
 
 Route::resource('config-tarefas', ConfigTarefasController::class);
-Route::resource('config-atividades', ConfigAtividades::class);
+Route::resource('config-atividades', ConfigAtividadesController::class);
 Route::resource('config-setores', ConfigSetoresController::class);

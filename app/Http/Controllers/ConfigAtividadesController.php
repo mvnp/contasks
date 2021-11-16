@@ -4,16 +4,43 @@ namespace App\Http\Controllers;
 
 use App\Models\ConfigTarefas;
 use Illuminate\Http\Request;
+<<<<<<< HEAD
+=======
+use App\Models\ConfigAtividades;
+>>>>>>> e891fe806676204f84157f001765362ae6c34f36
 use App\Http\Controllers\Controller;
 
 class ConfigAtividadesController extends Controller
 {
+<<<<<<< HEAD
 
     private $configtarefas;
 
     public function __construct(ConfigTarefas $configtarefas)
     {
         $this->configtarefas = $configtarefas;
+=======
+    private $configAtividades;
+
+    public function __construct(ConfigAtividades $configAtividades)
+    {
+        $this->configAtividades = $configAtividades;
+    }
+
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function index()
+    {
+        try {
+            $configAtividades = $this->configAtividades->get();
+            return response()->json($configAtividades, 200);
+        } catch (\Exception $e) {
+            return response()->json(['error' => $e->getMessage()], 401);
+        }
+>>>>>>> e891fe806676204f84157f001765362ae6c34f36
     }
 
     /**
