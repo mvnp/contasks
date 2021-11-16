@@ -3,9 +3,18 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\ConfigAtividades;
+use App\Http\Controllers\Controller;
 
 class ConfigAtividadesController extends Controller
 {
+    private $configAtividades;
+
+    public function __construct(ConfigAtividades $configAtividades)
+    {
+        $this->configAtividades = $configAtividades;
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -13,7 +22,12 @@ class ConfigAtividadesController extends Controller
      */
     public function index()
     {
-        //
+        try {
+            $configAtividades = $this->configAtividades->get();
+            return response()->json($configAtividades, 200);
+        } catch (\Exception $e) {
+            return response()->json(['error' => $e->getMessage()], 401);
+        }
     }
 
     /**

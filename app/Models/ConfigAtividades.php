@@ -8,4 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class ConfigAtividades extends Model
 {
     use HasFactory;
+
+    protected $table = 'config_atividades';
+    protected $fillable = ['descricao'];
 }
