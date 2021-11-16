@@ -2,29 +2,18 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\ConfigTarefas;
-use Illuminate\Http\Request;
-<<<<<<< HEAD
-=======
 use App\Models\ConfigAtividades;
->>>>>>> e891fe806676204f84157f001765362ae6c34f36
+use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
 class ConfigAtividadesController extends Controller
 {
-<<<<<<< HEAD
 
-    private $configtarefas;
-
-    public function __construct(ConfigTarefas $configtarefas)
-    {
-        $this->configtarefas = $configtarefas;
-=======
     private $configAtividades;
 
-    public function __construct(ConfigAtividades $configAtividades)
+    public function __construct(ConfigAtividades $confiAtividades)
     {
-        $this->configAtividades = $configAtividades;
+        $this->confiAtividades = $confiAtividades;
     }
 
     /**
@@ -37,22 +26,6 @@ class ConfigAtividadesController extends Controller
         try {
             $configAtividades = $this->configAtividades->get();
             return response()->json($configAtividades, 200);
-        } catch (\Exception $e) {
-            return response()->json(['error' => $e->getMessage()], 401);
-        }
->>>>>>> e891fe806676204f84157f001765362ae6c34f36
-    }
-
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
-    {
-        try {
-            $configtarefas = $this->ConfigTarefas->get();
-            return response()->json($configtarefas, 200);
         } catch (\Exception $e) {
             return response()->json(['error' => $e->getMessage()], 401);
         }
@@ -69,8 +42,8 @@ class ConfigAtividadesController extends Controller
         $data = $request->all();
 
         try {
-            $tarefa = $this->ConfigTarefas->create($data);
-            return response()->json($tarefa, 200);
+            $confiAtividades = $this->confiAtividades->create($data);
+            return response()->json($confiAtividades, 200);
         } catch (\Exception $e) {
             return response()->json(['error' => $e->getMessage()], 401);
         }
@@ -85,8 +58,8 @@ class ConfigAtividadesController extends Controller
     public function show($id)
     {
         try {
-            $configtarefa = $this->ConfigTarefas->findOrFail($id);
-            return response()->json(['data' => $configtarefa], 200);
+            $confiAtividades = $this->confiAtividades->findOrFail($id);
+            return response()->json(['data' => $confiAtividades], 200);
         } catch (\Exception $e) {
             return response()->json(['error' => $e->getMessage()], 401);
         }
@@ -104,9 +77,9 @@ class ConfigAtividadesController extends Controller
         $data = $request->all();
 
         try {
-            $configtarefa = $this->ConfigTarefas->findOrFail($id);
-            $configtarefa->update($data);
-            return response()->json($configtarefa, 200);
+            $confiAtividades = $this->confiAtividades->findOrFail($id);
+            $confiAtividades->update($data);
+            return response()->json($confiAtividades, 200);
         } catch (\Exception $e) {
             return response()->json(['error' => $e->getMessage()], 401);
         }
@@ -122,9 +95,9 @@ class ConfigAtividadesController extends Controller
     {
         try {
 
-            $configtarefa = $this->ConfigTarefas->findOrFail($id);
-            $configtarefa->delete();
-            return response()->json($configtarefa, 200);
+            $confiAtividades = $this->confiAtividades->findOrFail($id);
+            $confiAtividades->delete();
+            return response()->json($confiAtividades, 200);
         } catch (\Exception $e) {
             return response()->json(['error' => $e->getMessage()], 401);
         }
