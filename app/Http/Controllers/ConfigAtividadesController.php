@@ -2,10 +2,20 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\ConfigTarefas;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 
 class ConfigAtividadesController extends Controller
 {
+
+    private $configtarefas;
+
+    public function __construct(ConfigTarefas $configtarefas)
+    {
+        $this->configtarefas = $configtarefas;
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -13,17 +23,12 @@ class ConfigAtividadesController extends Controller
      */
     public function index()
     {
-        //
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
+        try {
+            $configtarefas = $this->ConfigTarefas->get();
+            return response()->json($configtarefas, 200);
+        } catch (\Exception $e) {
+            return response()->json(['error' => $e->getMessage()], 401);
+        }
     }
 
     /**
@@ -34,7 +39,14 @@ class ConfigAtividadesController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $data = $request->all();
+
+        try {
+            $tarefa = $this->ConfigTarefas->create($data);
+            return response()->json($tarefa, 200);
+        } catch (\Exception $e) {
+            return response()->json(['error' => $e->getMessage()], 401);
+        }
     }
 
     /**
@@ -45,18 +57,12 @@ class ConfigAtividadesController extends Controller
      */
     public function show($id)
     {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
+        try {
+            $configtarefa = $this->ConfigTarefas->findOrFail($id);
+            return response()->json(['data' => $configtarefa], 200);
+        } catch (\Exception $e) {
+            return response()->json(['error' => $e->getMessage()], 401);
+        }
     }
 
     /**
@@ -68,7 +74,15 @@ class ConfigAtividadesController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $data = $request->all();
+
+        try {
+            $configtarefa = $this->ConfigTarefas->findOrFail($id);
+            $configtarefa->update($data);
+            return response()->json($configtarefa, 200);
+        } catch (\Exception $e) {
+            return response()->json(['error' => $e->getMessage()], 401);
+        }
     }
 
     /**
@@ -79,6 +93,13 @@ class ConfigAtividadesController extends Controller
      */
     public function destroy($id)
     {
-        //
+        try {
+
+            $configtarefa = $this->ConfigTarefas->findOrFail($id);
+            $configtarefa->delete();
+            return response()->json($configtarefa, 200);
+        } catch (\Exception $e) {
+            return response()->json(['error' => $e->getMessage()], 401);
+        }
     }
 }
