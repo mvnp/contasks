@@ -9,9 +9,7 @@ class ConfigTarefas extends Model
 {
     use HasFactory;
     protected $table = 'config_tarefas';
-    protected $fillable = [
-        'descricao', 'atividade_id'
-    ];
+    protected $fillable = ['descricao', 'atividade_id'];
 
     public function configAtividades()
     {

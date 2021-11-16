@@ -23,7 +23,7 @@ class ConfigTarefasController extends Controller
     public function index()
     {
         try {
-            $configTarefas = $this->configTarefas->get();
+            $configTarefas = ConfigTarefas::with('configAtividades')->get();
             return response()->json($configTarefas, 200);
         } catch (\Exception $e) {
             return response()->json(['error' => $e->getMessage()], 401);
