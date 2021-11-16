@@ -10,9 +10,9 @@ class ConfigAtividadesController extends Controller
 {
     private $configAtividades;
 
-    public function __construct(ConfigAtividades $confiAtividades)
+    public function __construct(ConfigAtividades $configAtividades)
     {
-        $this->confiAtividades = $confiAtividades;
+        $this->configAtividades = $configAtividades;
     }
 
     /**
