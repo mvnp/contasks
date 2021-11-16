@@ -14,6 +14,6 @@ class ConfigSetoresTableSeeder extends Seeder
      */
     public function run()
     {
-        ConfigSetores::factory()->count(10)->create();
+        ConfigSetores::factory()->count(30)->create();
     }
 }

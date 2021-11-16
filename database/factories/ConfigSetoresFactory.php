@@ -22,7 +22,8 @@ class ConfigSetoresFactory extends Factory
     public function definition()
     {
         return [
-            'descricao' => $this->faker->jobTitle()
+            'titulo' => $this->faker->jobTitle(),
+            'descricao' => $this->faker->paragraph(3),
         ];
     }
 }

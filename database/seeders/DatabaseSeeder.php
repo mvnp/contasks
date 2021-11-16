@@ -16,7 +16,7 @@ class DatabaseSeeder extends Seeder
         $this->call([
             // UserTableSeeder::class,
             // ConfigAtividadesTableSeeder::class,
-            // ConfigSetoresTableSeeder::class,
+            ConfigSetoresTableSeeder::class,
             // ConfigTarefasTableSeeder::class,
             // EmpresasTableSeeder::class
         ]);
