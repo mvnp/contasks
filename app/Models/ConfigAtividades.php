@@ -12,8 +12,8 @@ class ConfigAtividades extends Model
     protected $table = 'config_atividades';
     protected $fillable = ['titulo', 'descricao'];
 
-    public function configTarefas()
+    public function atividades()
     {
-        return $this->hasMany(ConfigTarefas::class);
+        return $this->hasMany(Atividades::class);
     }
 }

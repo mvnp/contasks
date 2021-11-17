@@ -7,15 +7,20 @@ use Illuminate\Database\Eloquent\Model;
 
 class Tarefas extends Model
 {
+    use HasFactory;
+
     protected $table = 'tarefas';
     protected $fillable = [
-        '', 'fantasia', 'razao', 'cnpj', 'rua', 'numero', 'completmento', 'bairro', 'cidade', 'estado', 'telefonePrincipal', 'telefoneSecundario'
+        'atividade_id', 'conf_tarefa_id', 'descricao', 'finalizado'
     ];
+
+    public function atividades()
+    {
+        return $this->belongsTo(Atividades::class, 'atividade_id', 'id');
+    }
+
+    public function configTarefas()
+    {
+        return $this->belongsTo(configTarefas::class, 'Conf_tarefa_id', 'id');
+    }
 }
-
-
-$table->unsignedBigInteger('atividade_id');
-$table->unsignedBigInteger('conf_tarefa_id');
-$table->string("descricao");
-$table->boolean("finalizado");
-$table->timestamps();

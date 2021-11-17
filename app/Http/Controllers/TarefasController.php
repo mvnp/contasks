@@ -23,7 +23,7 @@ class TarefasController extends Controller
     public function index()
     {
         try {
-            $tarefas = $this->tarefas->get();
+            $tarefas = Tarefas::with('atividades', 'configTarefas')->get();
             return response()->json($tarefas, 200);
         } catch (\Exception $e) {
             return response()->json(['error' => $e->getMessage()], 401);

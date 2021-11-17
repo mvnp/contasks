@@ -11,4 +11,10 @@ class ConfigSetores extends Model
 
     protected $table = 'config_setores';
     protected $fillable = ['titulo', 'descricao'];
+
+
+    public function atividades()
+    {
+        return $this->hasMany(Atividades::class);
+    }
 }

@@ -2,10 +2,20 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Empresas;
+use App\Models\Atividades;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 
 class AtividadesController extends Controller
 {
+    private $atividades;
+
+    public function __construct(Atividades $atividades)
+    {
+        $this->atividades = $atividades;
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -13,18 +23,15 @@ class AtividadesController extends Controller
      */
     public function index()
     {
-        //
+        try {
+
+            $atividades = Atividades::with('empresas', 'configSetores', 'configAtividades')->get();
+            return response()->json($atividades, 200);
+        } catch (\Exception $e) {
+            return response()->json(['error' => $e->getMessage()], 401);
+        }
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
 
     /**
      * Store a newly created resource in storage.
@@ -34,7 +41,14 @@ class AtividadesController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $data = $request->all();
+
+        try {
+            $atividades = $this->atividades->create($data);
+            return response()->json($atividades, 200);
+        } catch (\Exception $e) {
+            return response()->json(['error' => $e->getMessage()], 401);
+        }
     }
 
     /**
@@ -45,18 +59,12 @@ class AtividadesController extends Controller
      */
     public function show($id)
     {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
+        try {
+            $atividades = $this->atividades->findOrFail($id);
+            return response()->json(['data' => $atividades], 200);
+        } catch (\Exception $e) {
+            return response()->json(['error' => $e->getMessage()], 401);
+        }
     }
 
     /**
@@ -68,7 +76,15 @@ class AtividadesController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $data = $request->all();
+
+        try {
+            $atividades = $this->atividades->findOrFail($id);
+            $atividades->update($data);
+            return response()->json($atividades, 200);
+        } catch (\Exception $e) {
+            return response()->json(['error' => $e->getMessage()], 401);
+        }
     }
 
     /**
@@ -79,6 +95,13 @@ class AtividadesController extends Controller
      */
     public function destroy($id)
     {
-        //
+        try {
+
+            $atividades = $this->atividades->findOrFail($id);
+            $atividades->delete();
+            return response()->json($atividades, 200);
+        } catch (\Exception $e) {
+            return response()->json(['error' => $e->getMessage()], 401);
+        }
     }
 }
