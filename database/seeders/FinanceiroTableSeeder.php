@@ -2,10 +2,10 @@
 
 namespace Database\Seeders;
 
-use App\Models\Empresas;
+use App\Models\Financeiro;
 use Illuminate\Database\Seeder;
 
-class EmpresasTableSeeder extends Seeder
+class FinanceiroTableSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -14,6 +14,6 @@ class EmpresasTableSeeder extends Seeder
      */
     public function run()
     {
-        Empresas::factory()->count(30)->create();
+        Financeiro::factory()->count(5000)->create();
     }
 }
