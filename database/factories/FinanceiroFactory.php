@@ -17,7 +17,7 @@ class FinanceiroFactory extends Factory
     {
         return [
             'empresa_id' => rand(1, 30),
-            'usuario_id' => rand(1, 275),
+            'usuario_id' => rand(1, 250),
             'boleto_id' => null,
             'descricao' => $this->faker->paragraph(3),
             'instrucao_rp' => $this->sortRp(),
