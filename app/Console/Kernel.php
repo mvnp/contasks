@@ -4,7 +4,6 @@ namespace App\Console;
 
 use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
-use App\Http\Middleware\apiProtectedRoute;
 
 class Kernel extends ConsoleKernel
 {
@@ -15,10 +14,6 @@ class Kernel extends ConsoleKernel
      */
     protected $commands = [
         //
-    ];
-
-    protected $routeMiddleware = [
-        'apiJWT' => \App\Http\Middleware\apiProtectedRoute::class,
     ];
 
 

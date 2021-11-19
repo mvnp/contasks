@@ -3,11 +3,10 @@
 namespace App\Http\Middleware;
 
 use Closure;
-use PhpParser\Node\Stmt\TryCatch;
 use Tymon\JWTAuth\Facades\JWTAuth;
 use Tymon\JWTAuth\Http\Middleware\BaseMiddleware;
 
-class apiProtectedRoute extends BaseMiddleware
+class GetUserFromToken extends BaseMiddleware
 {
     public function handle($request, Closure $next)
     {
