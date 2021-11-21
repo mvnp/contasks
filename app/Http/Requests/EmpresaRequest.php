@@ -26,7 +26,7 @@ class EmpresaRequest extends FormRequest
         return [
             'fantasia' => 'required|min:6|max:255',
             'razao' => 'required|min:6|max:255',
-            'cnpj' => 'required|min:14|max:14|numeric',
+            'cnpj' => 'required|digits:14|numeric|unique:empresas',
             'atividade' => 'required|min:6|max:255',
             'rua' => 'required|min:6|max:255',
             'numero' => 'required|min:2|max:15',
