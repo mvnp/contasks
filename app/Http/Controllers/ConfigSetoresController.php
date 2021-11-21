@@ -23,7 +23,7 @@ class ConfigSetoresController extends Controller
     public function index()
     {
         try {
-            $configSetores = $this->configSetores->get();
+            $configSetores = $this->configSetores->orderBy('id', 'desc')->get();
             return response()->json($configSetores, 200);
         } catch (\Exception $e) {
             return response()->json(['error' => $e->getMessage()], 401);
