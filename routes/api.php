@@ -35,11 +35,12 @@ Route::post('auth/login', [AuthController::class, 'login']);
 Route::middleware(['apiJWT'])->group(function () {
 
 
-    Route::get('empresas', [EmpresasController::class, 'empresas']);
+    Route::resource('empresas', EmpresasController::class);
+    //Route::post('empresas', [EmpresasController::class, 'empresas']);
     Route::resource('dashboard', DashboardController::class);
     Route::resource('tarefas', TarefasController::class);
     Route::resource('setores', SetoresController::class);
-    Route::resource('empresas', EmpresasController::class);
+    //Route::resource('empresas', EmpresasController::class);
     Route::resource('boletos', BoletosController::class);
     Route::resource('atividades', AtividadesController::class);
     Route::resource('relatorios', RelatoriosController::class);

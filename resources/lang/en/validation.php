@@ -140,7 +140,14 @@ return [
         'attribute-name' => [
             'rule-name' => 'custom-message',
         ],
+
+        'attribute-fantasia' => [
+            'required' => 'O campo fantasia é obrigatório!',
+            'min' => 'O campo fantasia deve ter um mínimo de 6 caracteres!'
+        ],
+
     ],
+
 
     /*
     |--------------------------------------------------------------------------
