@@ -43,7 +43,7 @@ class EmpresaRequest extends FormRequest
     public function messages()
     {
         return [
-            'fantasia' => [
+            'fantasia.required' => [
                 'required' => 'O campo fantasia é obrigatorio!.',
                 'min' => 'O campo fantasia deve ter o mínimo de 6 caracteres.',
                 'max' => 'O campo fantasia deve ter o mínimo de 255 caracteres.'
