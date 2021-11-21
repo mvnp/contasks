@@ -141,13 +141,6 @@ return [
             'rule-name' => 'custom-message',
         ],
 
-        'attribute-CNPJ' => [
-            'required' => 'O campo CNPJ é obrigatório!',
-            'min' => 'O campo fantasia deve ter um mínimo de 14 caracteres!',
-            'max' => 'O campo fantasia deve ter um mínimo de 14 caracteres!',
-            'numeric' => 'O campo cnpj precisa conter apenas números!'
-        ],
-
     ],
 
 
