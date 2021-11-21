@@ -24,7 +24,7 @@ class SetorRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+
         ];
     }
 }

@@ -6,6 +6,7 @@ use App\Models\Empresas;
 use App\Models\Atividades;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\AtividadeRequest;
 
 class AtividadesController extends Controller
 {
@@ -39,7 +40,7 @@ class AtividadesController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(AtividadeRequest $request)
     {
         $data = $request->all();
 
@@ -74,7 +75,7 @@ class AtividadesController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(AtividadeRequest $request, $id)
     {
         $data = $request->all();
 

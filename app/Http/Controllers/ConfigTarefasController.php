@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\ConfigTarefas;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\ConfigTarefaRequest;
 
 class ConfigTarefasController extends Controller
 {
@@ -36,7 +37,7 @@ class ConfigTarefasController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(ConfigTarefaRequest $request)
     {
         $data = $request->all();
 
@@ -71,7 +72,7 @@ class ConfigTarefasController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(ConfigTarefaRequest $request, $id)
     {
         $data = $request->all();
 

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\ConfigSetores;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\ConfigSetorRequest;
 
 class ConfigSetoresController extends Controller
 {
@@ -37,7 +38,7 @@ class ConfigSetoresController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(ConfigSetorRequest $request)
     {
         $data = $request->all();
 
@@ -72,7 +73,7 @@ class ConfigSetoresController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(ConfigSetorRequest $request, $id)
     {
         $data = $request->all();
 

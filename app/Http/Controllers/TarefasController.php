@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\Tarefas;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\TarefaRequest;
+
 
 class TarefasController extends Controller
 {
@@ -36,7 +38,7 @@ class TarefasController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(TarefaRequest $request)
     {
         $data = $request->all();
 
@@ -71,7 +73,7 @@ class TarefasController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(TarefaRequest $request, $id)
     {
         $data = $request->all();
 

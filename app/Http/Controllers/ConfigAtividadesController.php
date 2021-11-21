@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\ConfigAtividades;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\ConfigAtividadeRequest;
 
 class ConfigAtividadesController extends Controller
 {
@@ -36,7 +37,7 @@ class ConfigAtividadesController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(ConfigAtividadeRequest $request)
     {
         $data = $request->all();
 
@@ -71,7 +72,7 @@ class ConfigAtividadesController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(ConfigAtividadeRequest $request, $id)
     {
         $data = $request->all();
 
