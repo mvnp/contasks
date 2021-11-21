@@ -13,7 +13,7 @@ class ConfAtividadeRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -24,7 +24,21 @@ class ConfAtividadeRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+
+            'fantasia' => 'required|min:6|max:255',
+            'razao' => 'required|min:6|max:100',
+            'cnpj' => 'required|min:14|max:14|numeric|unique:empresas',
+            'atividade' => 'required|min:6|max:255',
+            'rua' => 'required|min:6|max:255',
+            'numero' => 'required|min:2|max:15',
+            'completmento' => 'required|min:6|max:255',
+            'bairro' => 'required|min:6|max:255',
+            'cep' => 'required|min:8|max:8|numeric',
+            'cidade' => 'required|min:6|max:255',
+            'estado' => 'required|min:6|max:255',
+            'telefonePrincipal' => 'required|min:9|max:11|numeric',
+            'telefoneSecundario' => 'required|min:9|max:11|numeric'
+
         ];
     }
 }
