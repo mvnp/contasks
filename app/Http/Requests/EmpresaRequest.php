@@ -25,7 +25,7 @@ class EmpresaRequest extends FormRequest
     {
         return [
             'fantasia' => 'required|min:6|max:255',
-            'razao' => 'required|min:6|max:255',
+            'razao' => 'required|min:6|max:100',
             'cnpj' => 'required|min:14|max:14|numeric',
             'atividade' => 'required|min:6|max:255',
             'rua' => 'required|min:6|max:255',
@@ -43,19 +43,19 @@ class EmpresaRequest extends FormRequest
     public function messages()
     {
         return [
-            'fantasia' => [
+            'fantasia.required' => [
                 'required' => 'O campo fantasia é obrigatorio!.',
                 'min' => 'O campo fantasia deve ter o mínimo de 6 caracteres.',
                 'max' => 'O campo fantasia deve ter o mínimo de 255 caracteres.'
             ],
 
-            'razao' => [
-                'required' => 'O campo razao é obrigatorio!.',
-                'min' => 'O campo razao deve ter o mínimo de 6 caracteres.',
+            'razao.required' => [
+                'required' => 'O campo razao:attribute é obrigatorio!.',
+                'min' => 'O campo razao:attribute deve ter o mínimo de 6 caracteres.',
                 'max' => 'O campo razao deve ter o mínimo de 255 caracteres.'
             ],
 
-            'cnpj' => [
+            'cnpj.required' => [
                 'required' => 'O campo cnpj é obrigatorio!.',
                 'min' => 'O campo cnpj deve ter o mínimo de 14 caracteres.',
                 'max' => 'O campo cnpj deve ter o mínimo de 14 caracteres.',
