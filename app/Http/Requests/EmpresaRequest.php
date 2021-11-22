@@ -30,7 +30,7 @@ class EmpresaRequest extends FormRequest
             'atividade' =>              'required|min:6',
             'rua' =>                    'required|min:6|max:255',
             'numero' =>                 'required|min:2|max:15',
-            'completmento' =>           '',
+            'complemento' =>           '',
             'bairro' =>                 'required|min:6|max:255',
             'cep' =>                    'required|digits:8',
             'cidade' =>                 'required|min:6|max:255',
