@@ -12,6 +12,7 @@ use App\Http\Controllers\EmpresasController;
 use App\Http\Controllers\RelatoriosController;
 use App\Http\Controllers\SetoresController;
 use App\Http\Controllers\TarefasController;
+use App\Http\Controllers\CepController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -54,3 +55,5 @@ Route::middleware(['apiJWT'])->group(function () {
     Route::get('auth/refresh', [AuthController::class, 'refresh']);
     Route::get('/users', [UserController::class, 'index']);
 });
+
+Route::get('/cep/{cep}', [CepController::class, 'get']);
