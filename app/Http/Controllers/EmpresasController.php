@@ -40,6 +40,9 @@ class EmpresasController extends Controller
     public function store(EmpresaRequest $request)
     {
         $data = $request->all();
+        //$this->validate($request, [
+        //    'cnpj' => 'required|cnpj'
+        //]);
 
         try {
             $empresa = $this->empresas->create($data);
