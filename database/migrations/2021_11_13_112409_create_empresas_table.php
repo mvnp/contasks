@@ -18,12 +18,10 @@ class CreateEmpresasTable extends Migration
             $table->string('fantasia');
             $table->string('razao');
             $table->string('cnpj');
-            $table->string('atividade');
             $table->string('rua');
             $table->string('numero');
             $table->string('completmento');
             $table->string('bairro');
-            $table->string('cep');
             $table->string('cidade');
             $table->string('estado');
             $table->string('telefonePrincipal');

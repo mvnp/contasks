@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class ConfAtividadeRequest extends FormRequest
+class ConfigTarefaRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -13,7 +13,7 @@ class ConfAtividadeRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -24,7 +24,8 @@ class ConfAtividadeRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            'titulo' => 'required|min:6|max:100',
+            'descricao' => 'required|min:6|max:255'
         ];
     }
 }

@@ -13,7 +13,7 @@ class TarefaRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -24,7 +24,8 @@ class TarefaRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            'descricao' => 'required|min:6|max:255',
+            'finalizado' => 'required|boolean'
         ];
     }
 }

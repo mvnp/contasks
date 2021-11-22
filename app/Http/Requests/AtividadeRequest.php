@@ -13,7 +13,7 @@ class AtividadeRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -24,7 +24,12 @@ class AtividadeRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            'descricao' => 'required|min:6|max:255',
+            'abertura' => 'required|date',
+            'fechamento' => 'required|date',
+            'recorrente' => 'required|boolean',
+            'periodo' => 'required|integer',
+            'finalizado' => 'required|boolean',
         ];
     }
 }
