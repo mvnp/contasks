@@ -27,16 +27,16 @@ class EmpresaRequest extends FormRequest
             'fantasia' =>               'required|min:6|max:255',
             'razao' =>                  'required|min:6|max:255',
             'cnpj' =>                   'required|digits:14|numeric|unique:empresas',
-            'atividade' =>              'required|min:6|max:255',
+            'atividade' =>              'required|min:6',
             'rua' =>                    'required|min:6|max:255',
             'numero' =>                 'required|min:2|max:15',
-            'completmento' =>           'required|min:6|max:255',
+            'completmento' =>           '',
             'bairro' =>                 'required|min:6|max:255',
-            'cep' =>                    'required|digits:8|numeric',
+            'cep' =>                    'required|digits:8',
             'cidade' =>                 'required|min:6|max:255',
-            'estado' =>                 'required|min:6|max:255',
-            'telefonePrincipal' =>      'required|min:10|max:11|numeric',
-            'telefoneSecundario' =>     'required|digits:11|numeric'
+            'estado' =>                 'required|min:2|max:255',
+            'telefonePrincipal' =>      'required|min:14|max:15',
+            'telefoneSecundario' =>     'required|min:14|max:15'
         ];
     }
 }
