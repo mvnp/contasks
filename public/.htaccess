@@ -1,12 +1,11 @@
-<IfModule mod_rewrite.c>
-    # That was ONLY to protect you from 500 errors
-    # if your server did not have mod_rewrite enabled
+# BEGIN WordPress
 
-    RewriteEngine On
-    # RewriteBase /
-    # NOT needed unless you're using mod_alias to redirect
+RewriteEngine On
+RewriteRule .* - [E=HTTP_AUTHORIZATION:%{HTTP:Authorization}]
+RewriteBase /
+RewriteRule ^index\.php$ - [L]
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule . /index.php [L]
 
-    RewriteCond %{REQUEST_URI} !/public
-    RewriteRule ^(.*)$ public/$1 [L]
-    # Direct all requests to /public folder
-</IfModule>
+# END WordPress
