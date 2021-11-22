@@ -123,6 +123,55 @@
             "time": "2021-08-15T20:50:18+00:00"
         },
         {
+            "name": "canducci/cep",
+            "version": "v3.1.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/netdragoon/canduccicep.git",
+                "reference": "b30aa566db1bf6cdfbe31367b22a2d2791a7fd04"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/netdragoon/canduccicep/zipball/b30aa566db1bf6cdfbe31367b22a2d2791a7fd04",
+                "reference": "b30aa566db1bf6cdfbe31367b22a2d2791a7fd04",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=7.2.7"
+            },
+            "require-dev": {
+                "illuminate/support": "7.x-dev",
+                "phpspec/phpspec": "6.1.1",
+                "phpunit/phpunit": "8.5.2"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Canducci\\Cep\\": "src/Canducci/Cep/"
+                },
+                "files": [
+                    "src/Canducci/Cep/Helpers/cep_helper.php",
+                    "src/Canducci/Cep/Helpers/uf_helper.php"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Fulvio",
+                    "email": "fulviocanducci@hotmail.com"
+                }
+            ],
+            "description": "CEP do Brasil Web Service ViaCep (https://viacep.com.br)",
+            "support": {
+                "issues": "https://github.com/netdragoon/canduccicep/issues",
+                "source": "https://github.com/netdragoon/canduccicep/tree/v3.1.1"
+            },
+            "time": "2020-09-10T15:11:52+00:00"
+        },
+        {
             "name": "composer/package-versions-deprecated",
             "version": "1.11.99.4",
             "source": {
@@ -8808,5 +8857,5 @@
         "php": "^7.3|^8.0"
     },
     "platform-dev": [],
-    "plugin-api-version": "2.0.0"
+    "plugin-api-version": "2.1.0"
 }
