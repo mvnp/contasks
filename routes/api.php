@@ -41,7 +41,6 @@ Route::middleware(['apiJWT'])->group(function () {
     Route::resource('dashboard', DashboardController::class);
     Route::resource('tarefas', TarefasController::class);
     Route::resource('setores', SetoresController::class);
-    //Route::resource('empresas', EmpresasController::class);
     Route::resource('boletos', BoletosController::class);
     Route::resource('atividades', AtividadesController::class);
     Route::resource('relatorios', RelatoriosController::class);
