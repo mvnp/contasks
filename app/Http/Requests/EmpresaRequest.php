@@ -35,8 +35,8 @@ class EmpresaRequest extends FormRequest
             'cep' =>                    'required|digits:8',
             'cidade' =>                 'required|min:6|max:255',
             'estado' =>                 'required|min:2|max:255',
-            'telefonePrincipal' =>      'required|min:14|max:15',
-            'telefoneSecundario' =>     'required|min:14|max:15'
+            'telefonePrincipal' =>      'required|min:10|max:11',
+            'telefoneSecundario' =>     'required|min:10|max:11'
         ];
     }
 }
