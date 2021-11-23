@@ -25,7 +25,7 @@ class ConfigTarefasFactory extends Factory
         return [
             'titulo' => $this->faker->jobTitle(),
             'descricao' => $this->faker->paragraph(3, false),
-            'atividade_id' => rand(1, 20)
+            'atividade_id' => rand(1, 300)
         ];
     }
 }

@@ -29,16 +29,13 @@ class EmpresasFactory extends Factory
             'atividade' => $this->faker->jobTitle(),
             'rua' => $this->faker->streetAddress(),
             'numero' => $this->faker->buildingNumber(),
-            'complemento' => $this->faker->text(100),
+            'completmento' => $this->faker->text(100),
             'cep' => $this->faker->postcode(),
             'bairro' => $this->getBairro(),
             'cidade' => $this->faker->city(),
             'estado' => $this->faker->stateAbbr(),
             'telefonePrincipal' => $this->faker->isbn10(),
             'telefoneSecundario' => $this->faker->isbn10(),
-            'inscricaoMunicipal' => rand(100000, 999999),
-            'inscricaoEstadual' => rand(100000, 999999),
-            'cnae' => rand(1000000, 9999999),
         ];
     }
 
