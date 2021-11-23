@@ -14,6 +14,6 @@ class ConfigTarefasTableSeeder extends Seeder
      */
     public function run()
     {
-        ConfigTarefas::factory()->count(10000)->create();
+        ConfigTarefas::factory()->count(450)->create();
     }
 }

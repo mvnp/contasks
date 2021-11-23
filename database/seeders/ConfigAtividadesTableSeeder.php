@@ -14,6 +14,6 @@ class ConfigAtividadesTableSeeder extends Seeder
      */
     public function run()
     {
-        ConfigAtividades::factory()->count(300)->create();
+        ConfigAtividades::factory()->count(20)->create();
     }
 }
