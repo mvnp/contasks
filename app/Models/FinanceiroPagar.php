@@ -8,4 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class FinanceiroPagar extends Model
 {
     use HasFactory;
+
+    protected $table = 'financeiro_pagar';
+    protected $fillable = ['empresa_id', 'usuario_id', 'boleto_id', 'descricao', 'valor', 'emissao', 'vencimento', 'recorrente', 'periodo', 'status'];
 }

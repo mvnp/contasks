@@ -53,7 +53,7 @@ final class Versions
   'guzzlehttp/guzzle' => '7.4.0@868b3571a039f0ebc11ac8f344f4080babe2cb94',
   'guzzlehttp/promises' => '1.5.1@fe752aedc9fd8fcca3fe7ad05d419d32998a06da',
   'guzzlehttp/psr7' => '2.1.0@089edd38f5b8abba6cb01567c2a8aaa47cec4c72',
-  'laravel/framework' => 'v8.73.1@36dfae9d9ef7f88e8f9489c484a0a0609592bc21',
+  'laravel/framework' => 'v8.73.2@0e1c63315eeaee5920552ff042bd820bb4014533',
   'laravel/sanctum' => 'v2.12.2@76b2d552c00477d520338889160f80a0cfb5fc55',
   'laravel/serializable-closure' => 'v1.0.4@8148e72e6c2c3af7f05640ada1b26c3bca970f8d',
   'laravel/tinker' => 'v2.6.2@c808a7227f97ecfd9219fbf913bad842ea854ddc',
@@ -77,7 +77,7 @@ final class Versions
   'psr/http-message' => '1.0.1@f6561bf28d520154e4b0ec72be95418abe6d9363',
   'psr/log' => '2.0.0@ef29f6d262798707a9edd554e2b82517ef3a9376',
   'psr/simple-cache' => '1.0.1@408d5eafb83c57f6365a3ca330ff23aa4a5fa39b',
-  'psy/psysh' => 'v0.10.9@01281336c4ae557fe4a994544f30d3a1bc204375',
+  'psy/psysh' => 'v0.10.11@38017532bba35d15d28dcc001b4274df0251c4a1',
   'ralouphie/getallheaders' => '3.0.3@120b605dfeb996808c31b6477290a714d356e822',
   'ramsey/collection' => '1.2.2@cccc74ee5e328031b15640b51056ee8d3bb66c0a',
   'ramsey/uuid' => '4.2.3@fc9bb7fb5388691fd7373cd44dcb4d63bbcf24df',
@@ -124,7 +124,7 @@ final class Versions
   'fakerphp/faker' => 'v1.16.0@271d384d216e5e5c468a6b28feedf95d49f83b35',
   'filp/whoops' => '2.14.4@f056f1fe935d9ed86e698905a957334029899895',
   'hamcrest/hamcrest-php' => 'v2.0.1@8c3d0a3f6af734494ad8f6fbbee0ba92422859f3',
-  'laravel/sail' => 'v1.12.5@d1c31b2c3d226e70e0071e074da69e4801f0f47b',
+  'laravel/sail' => 'v1.12.6@31edbfef5c232157244564db4869fd93bc53b8ce',
   'lucascudo/laravel-pt-br-localization' => 'v1.1.10@162e26243da8592a26337c3c55e13ead80358753',
   'mockery/mockery' => '1.4.4@e01123a0e847d52d186c5eb4b9bf58b0c6d00346',
   'myclabs/deep-copy' => '1.10.2@776f831124e9c62e1a2c601ecc52e776d8bb7220',
@@ -158,7 +158,7 @@ final class Versions
   'sebastian/type' => '2.3.4@b8cd8a1c753c90bc1a0f5372170e3e489136f914',
   'sebastian/version' => '3.0.2@c6c1022351a901512170118436c764e473f6de8c',
   'theseer/tokenizer' => '1.2.1@34a41e998c2183e22995f158c581e7b5e755ab9e',
-  'laravel/laravel' => 'dev-master@8cc1fddbc78ce74109d46823ccac4db10d50ffe9',
+  'laravel/laravel' => 'dev-master@35d2818689ccb2610f94add3fcdec8d2ca9bdc82',
 );
 
     private function __construct()
