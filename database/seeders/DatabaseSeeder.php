@@ -20,7 +20,8 @@ class DatabaseSeeder extends Seeder
             //ConfigAtividadesTableSeeder::class,
             //ConfigSetoresTableSeeder::class,
             //ConfigTarefasTableSeeder::class,
-            FinanceiroPagarTableSeeder::class
+            //FinanceiroPagarTableSeeder::class,
+            //FinanceiroReceberTableSeeder::class
         ]);
     }
 }
