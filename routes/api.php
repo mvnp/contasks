@@ -32,11 +32,10 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 Route::post('auth/login', [AuthController::class, 'login']);
-Route::resource('empresas', EmpresasController::class);
 
 Route::middleware(['apiJWT'])->group(function ()
 {
-    //Route::post('empresas', [EmpresasController::class, 'empresas']);
+    Route::resource('empresas', EmpresasController::class);
     Route::resource('dashboard', DashboardController::class);
     Route::resource('tarefas', TarefasController::class);
     Route::resource('setores', SetoresController::class);
