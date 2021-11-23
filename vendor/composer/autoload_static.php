@@ -53,6 +53,10 @@ class ComposerStaticInit61e0e91ad6b1c7fb343dd83804d455af
         array (
             'geekcom\\ValidatorDocs\\' => 22,
         ),
+        'c' => 
+        array (
+            'ctodobom\\APInterPHP\\' => 20,
+        ),
         'W' => 
         array (
             'Whoops\\' => 7,
@@ -210,6 +214,10 @@ class ComposerStaticInit61e0e91ad6b1c7fb343dd83804d455af
         'geekcom\\ValidatorDocs\\' => 
         array (
             0 => __DIR__ . '/..' . '/geekcom/validator-docs/src/validator-docs',
+        ),
+        'ctodobom\\APInterPHP\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/ctodobom/api-inter/src',
         ),
         'Whoops\\' => 
         array (
@@ -5965,6 +5973,16 @@ class ComposerStaticInit61e0e91ad6b1c7fb343dd83804d455af
         'Whoops\\Util\\Misc' => __DIR__ . '/..' . '/filp/whoops/src/Whoops/Util/Misc.php',
         'Whoops\\Util\\SystemFacade' => __DIR__ . '/..' . '/filp/whoops/src/Whoops/Util/SystemFacade.php',
         'Whoops\\Util\\TemplateHelper' => __DIR__ . '/..' . '/filp/whoops/src/Whoops/Util/TemplateHelper.php',
+        'ctodobom\\APInterPHP\\BancoInter' => __DIR__ . '/..' . '/ctodobom/api-inter/src/BancoInter.php',
+        'ctodobom\\APInterPHP\\BancoInterException' => __DIR__ . '/..' . '/ctodobom/api-inter/src/BancoInterException.php',
+        'ctodobom\\APInterPHP\\BancoInterValueSizeException' => __DIR__ . '/..' . '/ctodobom/api-inter/src/BancoInterValueSizeException.php',
+        'ctodobom\\APInterPHP\\Cobranca\\Boleto' => __DIR__ . '/..' . '/ctodobom/api-inter/src/Cobranca/Boleto.php',
+        'ctodobom\\APInterPHP\\Cobranca\\Desconto' => __DIR__ . '/..' . '/ctodobom/api-inter/src/Cobranca/Desconto.php',
+        'ctodobom\\APInterPHP\\Cobranca\\Mensagem' => __DIR__ . '/..' . '/ctodobom/api-inter/src/Cobranca/Mensagem.php',
+        'ctodobom\\APInterPHP\\Cobranca\\Mora' => __DIR__ . '/..' . '/ctodobom/api-inter/src/Cobranca/Mora.php',
+        'ctodobom\\APInterPHP\\Cobranca\\Multa' => __DIR__ . '/..' . '/ctodobom/api-inter/src/Cobranca/Multa.php',
+        'ctodobom\\APInterPHP\\Cobranca\\Pagador' => __DIR__ . '/..' . '/ctodobom/api-inter/src/Cobranca/Pagador.php',
+        'ctodobom\\APInterPHP\\StdSerializable' => __DIR__ . '/..' . '/ctodobom/api-inter/src/StdSerializable.php',
         'geekcom\\ValidatorDocs\\Contracts\\ValidatorFormats' => __DIR__ . '/..' . '/geekcom/validator-docs/src/validator-docs/Contracts/ValidatorFormats.php',
         'geekcom\\ValidatorDocs\\Formats\\Certidao' => __DIR__ . '/..' . '/geekcom/validator-docs/src/validator-docs/Formats/Certidao.php',
         'geekcom\\ValidatorDocs\\Formats\\Cnpj' => __DIR__ . '/..' . '/geekcom/validator-docs/src/validator-docs/Formats/Cnpj.php',

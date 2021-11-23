@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "28165809b021811e79b292b12d49c703",
+    "content-hash": "716e97451216335d5d3233ae555b24b9",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -243,6 +243,51 @@
                 }
             ],
             "time": "2021-09-13T08:41:34+00:00"
+        },
+        {
+            "name": "ctodobom/api-inter",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/allgood/APInter-PHP.git",
+                "reference": "1b5df3161596c401d4355dc9f3e16844600260f2"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/allgood/APInter-PHP/zipball/1b5df3161596c401d4355dc9f3e16844600260f2",
+                "reference": "1b5df3161596c401d4355dc9f3e16844600260f2",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=7.3"
+            },
+            "require-dev": {
+                "fzaninotto/faker": "^1.9",
+                "phpstan/phpstan": "^0.12",
+                "phpunit/phpunit": "^9.1",
+                "scrutinizer/ocular": "^1.3",
+                "squizlabs/php_codesniffer": "^3.5"
+            },
+            "default-branch": true,
+            "type": "package",
+            "autoload": {
+                "psr-4": {
+                    "ctodobom\\APInterPHP\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "LGPL-3.0"
+            ],
+            "description": "Acesso à API do Banco Inter",
+            "keywords": [
+                "Banco Inter Intermedium Boletos Cobrança"
+            ],
+            "support": {
+                "issues": "https://github.com/allgood/APInter-PHP/issues",
+                "source": "https://github.com/allgood/APInter-PHP/tree/master"
+            },
+            "time": "2021-04-27T13:28:43+00:00"
         },
         {
             "name": "dflydev/dot-access-data",
@@ -8854,12 +8899,14 @@
     ],
     "aliases": [],
     "minimum-stability": "dev",
-    "stability-flags": [],
+    "stability-flags": {
+        "ctodobom/api-inter": 20
+    },
     "prefer-stable": true,
     "prefer-lowest": false,
     "platform": {
         "php": "^7.3|^8.0"
     },
     "platform-dev": [],
-    "plugin-api-version": "2.1.0"
+    "plugin-api-version": "2.0.0"
 }

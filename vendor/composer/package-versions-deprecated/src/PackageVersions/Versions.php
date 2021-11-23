@@ -37,6 +37,7 @@ final class Versions
   'brick/math' => '0.9.3@ca57d18f028f84f777b2168cd1911b0dee2343ae',
   'canducci/cep' => 'v3.1.1@b30aa566db1bf6cdfbe31367b22a2d2791a7fd04',
   'composer/package-versions-deprecated' => '1.11.99.4@b174585d1fe49ceed21928a945138948cb394600',
+  'ctodobom/api-inter' => 'dev-master@1b5df3161596c401d4355dc9f3e16844600260f2',
   'dflydev/dot-access-data' => 'v3.0.1@0992cc19268b259a39e86f296da5f0677841f42c',
   'doctrine/cache' => '2.1.1@331b4d5dbaeab3827976273e9356b3b453c300ce',
   'doctrine/dbal' => '3.1.4@821b4f01a36ce63ed36c090ea74767b72db367e9',
