@@ -14,6 +14,6 @@ class FinanceiroPagarTableSeeder extends Seeder
      */
     public function run()
     {
-        FinanceiroPagar::factory()->count(5000)->create();
+        FinanceiroPagar::factory()->count(15000)->create();
     }
 }
