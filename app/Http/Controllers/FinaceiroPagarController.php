@@ -2,17 +2,17 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\ConfigTarefas;
 use App\Http\Controllers\Controller;
-use App\Http\Requests\ConfigTarefaRequest;
+use App\Models\FinanceiroPagar;
+use App\Http\Requests\FinanceiroPagRequest;
 
-class ConfigTarefasController extends Controller
+class FinaceiroPagarController extends Controller
 {
-    private $configTarefas;
+    private $financeiroPagar;
 
-    public function __construct(ConfigTarefas $configTarefas)
+    public function __construct(FinanceiroPagar $financeiroPagar)
     {
-        $this->configTarefas = $configTarefas;
+        $this->financeiroPagar = $financeiroPagar;
     }
 
     /**
@@ -23,8 +23,8 @@ class ConfigTarefasController extends Controller
     public function index()
     {
         try {
-            $configTarefas = ConfigTarefas::with('configAtividades')->get();
-            return response()->json($configTarefas, 200);
+            $financeiroPagar = FinanceiroPagar::with('empresa_id', 'usuario_id', 'boleto_id')->get();
+            return response()->json($financeiroPagar, 200);
         } catch (\Exception $e) {
             return response()->json(['error' => $e->getMessage()], 401);
         }
@@ -36,13 +36,13 @@ class ConfigTarefasController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(ConfigTarefaRequest $request)
+    public function store(FinanceiroPagRequest $request)
     {
         $data = $request->all();
 
         try {
-            $configTarefas = $this->configTarefas->create($data);
-            return response()->json($configTarefas, 200);
+            $financeiroPagar = $this->financeiroPagar->create($data);
+            return response()->json($financeiroPagar, 200);
         } catch (\Exception $e) {
             return response()->json(['error' => $e->getMessage()], 401);
         }
@@ -57,8 +57,8 @@ class ConfigTarefasController extends Controller
     public function show($id)
     {
         try {
-            $configTarefas = $this->configTarefas->findOrFail($id);
-            return response()->json(['data' => $configTarefas], 200);
+            $financeiroPagar = $this->financeiroPagar->findOrFail($id);
+            return response()->json(['data' => $financeiroPagar], 200);
         } catch (\Exception $e) {
             return response()->json(['error' => $e->getMessage()], 401);
         }
@@ -71,14 +71,14 @@ class ConfigTarefasController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(ConfigTarefaRequest $request, $id)
+    public function update(FinanceiroPagRequest $request, $id)
     {
         $data = $request->all();
 
         try {
-            $configTarefas = $this->configTarefas->findOrFail($id);
-            $configTarefas->update($data);
-            return response()->json($configTarefas, 200);
+            $financeiroPagar = $this->financeiroPagar->findOrFail($id);
+            $financeiroPagar->update($data);
+            return response()->json($financeiroPagar, 200);
         } catch (\Exception $e) {
             return response()->json(['error' => $e->getMessage()], 401);
         }
@@ -94,9 +94,9 @@ class ConfigTarefasController extends Controller
     {
         try {
 
-            $configTarefas = $this->configTarefas->findOrFail($id);
-            $configTarefas->delete();
-            return response()->json($configTarefas, 200);
+            $financeiroPagar = $this->financeiroPagar->findOrFail($id);
+            $financeiroPagar->delete();
+            return response()->json($financeiroPagar, 200);
         } catch (\Exception $e) {
             return response()->json(['error' => $e->getMessage()], 401);
         }

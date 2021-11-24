@@ -11,4 +11,14 @@ class FinanceiroReceber extends Model
 
     protected $table = 'financeiro_receber';
     protected $fillable = ['empresa_id', 'usuario_id', 'boleto_id', 'descricao', 'valor', 'emissao', 'vencimento', 'recorrente', 'periodo', 'status'];
+
+    public function empresas()
+    {
+        return $this->belongsTo(Empresas::class);
+    }
+
+    public function boleto()
+    {
+        return $this->hasOne(Boletos::class);
+    }
 }

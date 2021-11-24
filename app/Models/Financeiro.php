@@ -11,4 +11,8 @@ class Financeiro extends Model
 
     protected $table = 'financeiro';
     protected $fillable = ['empresa_id', 'usuario_id', 'boleto_id', 'descricao', 'instrucao_rp', 'valor', 'emissao', 'vencimento', 'recorrente', 'periodo'];
+
+
+
+
 }

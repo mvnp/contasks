@@ -31,4 +31,14 @@ class Empresas extends Model
     {
         return $this->belongsTo(ConfigAtividades::class);
     }
+
+    public function financeiroReceber()
+    {
+        return $this->hasMany(financeiroReceber::class);
+    }
+
+    public function financeiroPagar()
+    {
+        return $this->hasMany(financeiroPagar::class);
+    }
 }
