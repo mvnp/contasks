@@ -14,7 +14,7 @@ class FinanceiroReceber extends Model
 
     public function empresas()
     {
-        return $this->belongsTo(Empresas::class);
+        return $this->belongsTo(Empresas::class, 'empresa_id', 'id');
     }
 
     public function boleto()
