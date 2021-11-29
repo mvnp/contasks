@@ -22,6 +22,7 @@ class BoletosRepository
      */
     public function getAll($idDebito)
     {
-        return $this->financeiroReceber->find($idDebito);
+        return $this->financeiroReceber::with('empresas')->find($idDebito);
+        //$financeiroReceber = FinanceiroReceber::with('empresas')->findOrFail($id);
     }
 }

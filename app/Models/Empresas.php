@@ -34,11 +34,11 @@ class Empresas extends Model
 
     public function financeiroReceber()
     {
-        return $this->hasMany(financeiroReceber::class);
+        return $this->hasMany(FinanceiroReceber::class);
     }
 
     public function financeiroPagar()
     {
-        return $this->hasMany(financeiroPagar::class);
+        return $this->hasMany(FinanceiroPagar::class);
     }
 }
