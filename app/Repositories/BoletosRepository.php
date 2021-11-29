@@ -25,4 +25,9 @@ class BoletosRepository
         return $this->financeiroReceber::with('empresas')->find($idDebito);
         //$financeiroReceber = FinanceiroReceber::with('empresas')->findOrFail($id);
     }
+
+    public function getBanco($conta)
+    {
+        //
+    }
 }

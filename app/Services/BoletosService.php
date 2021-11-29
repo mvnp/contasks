@@ -3,12 +3,12 @@
 namespace App\Services;
 
 use App\Repositories\BoletosRepository;
-use ctodobom\APInterPHP\BancoInter;
-use ctodobom\APInterPHP\Cobranca\Pagador;
-use ctodobom\APInterPHP\Cobranca\Boleto;
-use ctodobom\APInterPHP\StdSerializable;
-use ctodobom\APInterPHP\BancoInterException;
 use Illuminate\Support\Facades\Validator;
+use ctodobom\APInterPHP\StdSerializable;
+use ctodobom\APInterPHP\BancoInter;
+use ctodobom\APInterPHP\BancoInterException;
+use ctodobom\APInterPHP\Cobranca\Boleto;
+use ctodobom\APInterPHP\Cobranca\Pagador;
 use Exception;
 
 
@@ -56,8 +56,12 @@ class BoletosService
 
     public function gerarBoleto()
     {
-        $boleto = new Boleto();
-        $pagador = $this->getPagador();
+        $banco = new BancoInter($this->conta, $this->certificado, $this->chavePrivadaSenha);
+
+        $financeiro = new BoletosRepository;
+        $debito = $financeiro->getAll($id);
+        //$boleto = new Boleto();
+        //$pagador = $this->getPagador();
 
         $boleto->setCnpjCPFBeneficiario($this->cnpj);
         $boleto->setPagador($pagador);
