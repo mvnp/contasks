@@ -13,6 +13,8 @@ use App\Http\Controllers\RelatoriosController;
 use App\Http\Controllers\SetoresController;
 use App\Http\Controllers\TarefasController;
 use App\Http\Controllers\CepController;
+use App\Http\Controllers\FinaceiroPagarController;
+use App\Http\Controllers\FinaceiroReceberController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -48,6 +50,9 @@ Route::middleware(['apiJWT'])->group(function () {
     Route::resource('config-tarefas', ConfigTarefasController::class);
     Route::resource('config-atividades', ConfigAtividadesController::class);
     Route::resource('config-setores', ConfigSetoresController::class);
+
+    Route::resource('financeiro-receber', FinaceiroReceberController::class);
+    Route::resource('financeiro-pagar', FinaceiroPagarController::class);
 
     Route::get('auth/me', [AuthController::class, 'me']);
     Route::get('auth/logout', [AuthController::class, 'logout']);

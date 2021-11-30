@@ -57,7 +57,8 @@ class FinaceiroReceberController extends Controller
     public function show($id)
     {
         try {
-            $financeiroReceber = $this->financeiroReceber->findOrFail($id);
+            $financeiroReceber = FinanceiroReceber::with('empresas')->findOrFail($id);
+            //$financeiroReceber = $this->financeiroReceber->findOrFail($id);
             return response()->json(['data' => $financeiroReceber], 200);
         } catch (\Exception $e) {
             return response()->json(['error' => $e->getMessage()], 401);
