@@ -5,7 +5,7 @@ namespace App\Repositories;
 use App\Models\Boletos;
 use App\Models\FinanceiroReceber;
 use App\Models\Empresas;
-
+use GuzzleHttp\Psr7\Request;
 
 class BoletosRepository
 {
@@ -37,6 +37,18 @@ class BoletosRepository
     public function save($boleto)
     {
         $model = new Boletos;
-        $model->create($boleto);
+
+        $model->empresa_id = 251;
+        $model->financeiro_id = 1;
+        $model->seu_numero = $boleto->seu_numero;
+        $model->codigo_barras = $boleto->codigo_barras;
+        $model->linha_digitavel = $boleto->linha_digitavel;
+        $model->boleto_arquivo = null;
+        $model->nosso_numero = $boleto->nosso_numero;
+        $model->emissao = $boleto->emissao;
+        $model->vencimento = $boleto->vencimento;
+        $model->pago = 0;
+
+        $model->save();
     }
 }
