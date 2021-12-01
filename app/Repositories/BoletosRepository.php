@@ -8,12 +8,14 @@ use App\Models\Empresas;
 
 class BoletosRepository
 {
+
     protected $financeiroReceber;
 
     public function __construct()
     {
         $this->financeiroReceber = new FinanceiroReceber;
     }
+
     //
     /**
      * Get all posts.
