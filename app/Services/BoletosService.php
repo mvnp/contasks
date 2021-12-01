@@ -47,6 +47,7 @@ class BoletosService
 
 
             # $this->connectBanco->createBoleto($boleto);
+
             $boleto = array(
                 'message' => 'Boleto foi gerado com sucesso.',
                 'data' => array(
@@ -117,12 +118,14 @@ class BoletosService
                 ),
             );
 
+
+
+
             $this->registraBoleto($boleto);
 
 
 
             return $boleto;
-
 
 
 
@@ -141,18 +144,18 @@ class BoletosService
             'seu_numero ' => $dados['seuNumero'],
             'codigo_barras ' => $dados['codigoBarras'],
             'linha_digitavel ' => $dados['linhaDigitavel'],
+            # boleto_arquivo
             'nosso_numero ' => $dados['nossoNumero'],
             'emissao ' => $dados['dataEmissao'],
             'vencimento ' => $dados['dataVencimento'],
             'pago ' => 0
         ];
+
+        $boletosRepository->save($boleto);
         // Acessar o repository
         // Montar o array das infos que vão na tabela
         // Inserir os dados na tabela
         // Pegar a resposta "true" e ir devolvendo até chegar no controller
-        if ($boletosRepository->create($boleto)) { // true
-            return true;
-        }
     }
 
     public function getPagador($ArrayInfoDebito)

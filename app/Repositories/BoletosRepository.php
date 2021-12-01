@@ -34,22 +34,9 @@ class BoletosRepository
         //
     }
 
-    public function create($boleto)
+    public function save($boleto)
     {
-        // $boleto = array(
-        //     'seunumero' => $boleto->seuNumero()
-        //     'seunumero' => $boleto->seuNumero()
-        //     'seunumero' => $boleto->seuNumero()
-        //     'seunumero' => $boleto->seuNumero()
-        //     'seunumero' => $boleto->seuNumero()
-        //     'seunumero' => $boleto->seuNumero()
-        //     'seunumero' => $boleto->seuNumero()
-        //     'seunumero' => $boleto->seuNumero()
-        // );
-
-        // Model // save ou create
-        // if (Boletos::save($boleto)) {
-        //     return true;
-        // }
+        $model = new Boletos;
+        $model->save($boleto);
     }
 }

@@ -10,7 +10,7 @@ class Boletos extends Model
     use HasFactory;
 
     protected $table = 'boletos';
-    protected $fillable = ['empresa_id', 'boleto_ref', 'boleto_link', 'emissao', 'vencimento', 'pago'];
+    protected $fillable = ['empresa_id', 'financeiro_id', 'seu_numero', 'codigo_barras', 'linha_digitavel', 'boleto_arquivo', 'nosso_numero', 'emissao', 'vencimento', 'pago'];
 
 
     public function financeiroPagar()
