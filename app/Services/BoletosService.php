@@ -24,12 +24,15 @@ class BoletosService
     private $conta = "115830308";
     private $cnpj = "33240999000103";
     private $seuNumero = "02094633240";
-    private $certificado = "./certs/certificado.crt"; //caminho/do/certificado.pem
-    private $chavePrivada = "./certs/certificado.key"; //caminho/da/chaveprivada.key
+    private $certificado = 'C:/Server/www/_contasks/bakend_contasks/certs/certificado.crt'; //caminho/do/certificado.pem
+    private $chavePrivada = 'C:/Server/www/_contasks/bakend_contasks/certs/certificado.key'; //caminho/da/chaveprivada.key
     private $chavePrivadaSenha = ""; // $this->connectBanco->setKeyPassword("senhadachave");
 
     public function __construct()
     {
+        $dir = __DIR__;
+        var_dump($dir);
+
         $this->boletosRepository = new BoletosRepository;
         $this->connectBanco = new BancoInter($this->conta, $this->certificado, $this->chavePrivada);
     }
