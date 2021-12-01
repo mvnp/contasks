@@ -30,9 +30,6 @@ class BoletosService
 
     public function __construct()
     {
-        $dir = __DIR__;
-        var_dump($dir);
-
         $this->boletosRepository = new BoletosRepository;
         $this->connectBanco = new BancoInter($this->conta, $this->certificado, $this->chavePrivada);
     }
@@ -46,15 +43,21 @@ class BoletosService
 
         try {
             $this->connectBanco->createBoleto($boleto);
-            echo "\nBoleto Criado\n";
-            echo "\n seuNumero: " . $boleto->getSeuNumero();
-            echo "\n nossoNumero: " . $boleto->getNossoNumero();
-            echo "\n codigoBarras: " . $boleto->getCodigoBarras();
-            echo "\n linhaDigitavel: " . $boleto->getLinhaDigitavel();
-
-            return response()->json($boleto, 200);
+            $registrarBoleto = $this->registraBoleto($boleto);
         } catch (BancoInterException $e) {
             return response()->json(['error' => $e->getMessage()], 401);
+        }
+    }
+
+    public function registraBoleto($boleto)
+    {
+        $boletosRepository = new BoletosRepository;
+        // Acessar o repository
+        // Montar o array das infos que vão na tabela
+        // Inserir os dados na tabela
+        // Pegar a resposta "true" e ir devolvendo até chegar no controller
+        if ($boletosRepository->create($boleto)) { // true
+            return true;
         }
     }
 
@@ -87,7 +90,7 @@ class BoletosService
         $boleto->setPagador($this->getPagador($infoDebito));
         $boleto->setSeuNumero($this->seuNumero);
         $boleto->setDataEmissao(date('Y-m-d'));
-        $boleto->setValorNominal(100.10);
+        $boleto->setValorNominal($infoDebito['valor']);
         $boleto->setMensagem($this->getMensagens());
         $boleto->setMulta($this->getMulta());
         $boleto->setDesconto1($this->getDesconto1());
@@ -264,33 +267,5 @@ class BoletosService
             echo "\n\nConteúdo: \n";
             echo $e->reply->body;
         }
-    }
-
-    public function getDescontos()
-    {
-
-        $desconto1 = new Desconto;
-        $desconto1->setCodigoDesconto(1);
-        $desconto1->setTaxa(0);
-        $desconto1->setValor(100.00);
-        $desconto1->setData("2021-12-20");
-
-        $desconto2 = new Desconto;
-        $desconto2->setCodigoDesconto(1);
-        $desconto2->setTaxa(0);
-        $desconto2->setValor(100.00);
-        $desconto2->setData("2021-12-20");
-
-        $desconto3 = new Desconto;
-        $desconto3->setCodigoDesconto(1);
-        $desconto3->setTaxa(0);
-        $desconto3->setValor(100.00);
-        $desconto3->setData("2021-12-20");
-
-        return [
-            $desconto1,
-            $desconto2,
-            $desconto3
-        ];
     }
 }
