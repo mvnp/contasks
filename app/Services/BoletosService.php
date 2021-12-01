@@ -137,6 +137,7 @@ class BoletosService
     public function registraBoleto($boleto)
     {
         $boletosRepository = new BoletosRepository;
+
         $dados = $boleto['data'];
         $boletoRegister = [
             'empresa_id ' => 251,
@@ -144,7 +145,7 @@ class BoletosService
             'seu_numero ' => $dados['seuNumero'],
             'codigo_barras ' => $dados['codigoBarras'],
             'linha_digitavel ' => $dados['linhaDigitavel'],
-            # boleto_arquivo
+            'boleto_arquivo' => null,
             'nosso_numero ' => $dados['nossoNumero'],
             'emissao ' => $dados['dataEmissao'],
             'vencimento ' => $dados['dataVencimento'],

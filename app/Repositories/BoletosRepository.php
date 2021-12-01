@@ -37,6 +37,6 @@ class BoletosRepository
     public function save($boleto)
     {
         $model = new Boletos;
-        $model->save($boleto);
+        $model->create($boleto);
     }
 }
