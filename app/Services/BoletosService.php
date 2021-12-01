@@ -39,7 +39,77 @@ class BoletosService
         $banco = new BancoInter($this->conta, $this->certificado, $this->chavePrivada);
         $boletosRepository = new BoletosRepository;
         $ArrayInfoDebito = $boletosRepository->getAll($idDebito);
-        $boleto = $this->getBoleto($ArrayInfoDebito);
+        # $boleto = $this->getBoleto($ArrayInfoDebito);
+
+        $boleto = array(
+            'message' => 'Boleto foi gerado com sucesso.',
+            'data' => array(
+              'dataEmissao' => '2021-12-01',
+              'seuNumero' => '0209463320',
+              'dataLimite' => 'SESSENTA',
+              'dataVencimento' => '2021-12-11',
+              'valorNominal' => 336.85,
+              'valorAbatimento' => 0,
+              'cnpjCPFBeneficiario' => '33240999000103',
+              'numDiasAgenda' => 'SESSENTA',
+              'pagador' => array(
+                'cnpjCpf' => '10772017000110',
+                'nome' => 'AXITECH NEGOCIOS DIGITAIS',
+                'cep' => '88132212',
+                'bairro' => 'Pagani',
+                'endereco' => 'Rua Milão',
+                'numero' => '95',
+                'complemento' => 'Sala 601',
+                'cidade' => 'Palhoça',
+                'uf' => 'SC',
+                'tipoPessoa' => 'JURIDICA',
+                'email' => 'contato@axitech.com.br',
+                'ddd' => '48',
+                'telefone' => '991893313',
+              ),
+              'mensagem' => array (
+                'linha1' => 'Linha 1',
+                'linha2' => 'Linha 2',
+                'linha3' => 'Linha 3',
+                'linha4' => 'Linha 4',
+                'linha5' => 'Linha 5',
+              ),
+              'desconto1' => array (
+                'codigoDesconto' => 'NAOTEMDESCONTO',
+                'taxa' => 0,
+                'valor' => 0,
+                'data' => '',
+              ),
+              'desconto2' => array (
+                'codigoDesconto' => 'NAOTEMDESCONTO',
+                'taxa' => 0,
+                'valor' => 0,
+                'data' => '',
+              ),
+              'desconto3' => array (
+                'codigoDesconto' => 'NAOTEMDESCONTO',
+                'taxa' => 0,
+                'valor' => 0,
+                'data' => '',
+              ),
+              'multa' => array (
+                'codigoMulta' => 'NAOTEMMULTA',
+                'valor' => 0,
+                'taxa' => 0,
+                'data' => '',
+              ),
+              'mora' => array (
+                'codigoMora' => 'ISENTO',
+                'valor' => 0,
+                'taxa' => 0,
+                'data' => '',
+              ),
+              'nossoNumero' => '00755519776',
+              'codigoBarras' => '07793883100000336850001112043103300755519776',
+              'linhaDigitavel' => '07790001161204310330307555197768388310000033685',
+              'controller' => array (),
+            ),
+        );
 
         try {
 
@@ -47,7 +117,9 @@ class BoletosService
 
 
             $this->connectBanco->createBoleto($boleto);
-            // $registrarBoleto = $this->registraBoleto($boleto);
+            $this->registraBoleto($boleto);
+
+
 
             return $boleto;
 
@@ -62,6 +134,18 @@ class BoletosService
     public function registraBoleto($boleto)
     {
         $boletosRepository = new BoletosRepository;
+        $dados = $boleto['data'];
+        $boletoRegister = [
+            'empresa_id ' => 251,
+            'financeiro_id ' => 1,
+            'seu_numero ' => $dados['seuNumero'],
+            'codigo_barras ' => $dados['codigoBarras'],
+            'linha_digitavel ' => $dados['linhaDigitavel'],
+            'nosso_numero ' => $dados['nossoNumero'],
+            'emissao ' => $dados['dataEmissao'],
+            'vencimento ' => $dados['dataVencimento'],
+            'pago ' => 0
+        ];
         // Acessar o repository
         // Montar o array das infos que vão na tabela
         // Inserir os dados na tabela
