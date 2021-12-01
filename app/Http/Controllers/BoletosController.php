@@ -22,11 +22,11 @@ class BoletosController extends Controller
      */
     public function index()
     {
-        $boletos = $this->boletosService->getAllData();
+        // $boletos = $this->boletosService->getAllData();
 
-        return response()->json([
-            'data' => $boletos
-        ]);
+        // return response()->json([
+        //     'data' => $boletos
+        // ]);
     }
 
     /**
@@ -59,17 +59,6 @@ class BoletosController extends Controller
     {
         $boletosService = new BoletosService;
         $geradorBoleto = $boletosService->gerarBoleto($id);
-
-        return response()->json([
-            "message" => "Boleto foi gerado com sucesso.",
-            'data' => $geradorBoleto
-        ], 200);
-
-        // if ($debito === true) {
-        //     return response()->json([
-        //         "message" => "Boleto foi gerado com sucesso."
-        //     ], 200);
-        // }
 
         // return response()->json([
         //     "message" => "Boleto não foi gerado."

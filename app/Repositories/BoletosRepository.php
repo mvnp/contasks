@@ -2,6 +2,7 @@
 
 namespace App\Repositories;
 
+use App\Models\Boletos;
 use App\Models\FinanceiroReceber;
 use App\Models\Empresas;
 
