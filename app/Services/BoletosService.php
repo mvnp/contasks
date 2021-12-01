@@ -42,8 +42,17 @@ class BoletosService
         $boleto = $this->getBoleto($ArrayInfoDebito);
 
         try {
+
+
+
+
             $this->connectBanco->createBoleto($boleto);
-            $registrarBoleto = $this->registraBoleto($boleto);
+            // $registrarBoleto = $this->registraBoleto($boleto);
+            return $boleto;
+
+
+
+
         } catch (BancoInterException $e) {
             return response()->json(['error' => $e->getMessage()], 401);
         }
