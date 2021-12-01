@@ -22,7 +22,11 @@ class BoletosController extends Controller
      */
     public function index()
     {
-        //
+        $boletos = $this->boletosService->getAllData();
+
+        return response()->json([
+            'data' => $boletos
+        ]);
     }
 
     /**
@@ -34,6 +38,15 @@ class BoletosController extends Controller
     public function store(Request $request)
     {
         //
+
+        $boleto = $this->boletosService->gerarBoleto($request);
+
+        try {
+            $boleto = $this->boletosService->gerarBoleto($request);
+            return response()->json($boleto, 200);
+        } catch (\Exception $e) {
+            return response()->json(['error' => $e->getMessage()], 401);
+        }
     }
 
     /**
@@ -45,7 +58,7 @@ class BoletosController extends Controller
     public function show($id)
     {
         $boletosService = new BoletosService;
-        $debito = $boletosService->getPagador($id);
+        $debito = $boletosService->gerarBoleto($id);
 
         return response()->json($debito, 200);
     }

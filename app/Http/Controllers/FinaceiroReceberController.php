@@ -23,7 +23,7 @@ class FinaceiroReceberController extends Controller
     public function index()
     {
         try {
-            $financeiroReceber = FinanceiroReceber::with('empresa_id', 'usuario_id', 'boleto_id')->get();
+            $financeiroReceber = FinanceiroReceber::with('empresas')->get();
             return response()->json($financeiroReceber, 200);
         } catch (\Exception $e) {
             return response()->json(['error' => $e->getMessage()], 401);
