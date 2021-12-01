@@ -24,8 +24,8 @@ class BoletosService
     private $conta = "115830308";
     private $cnpj = "33240999000103";
     private $seuNumero = "02094633240";
-    private $certificado = 'C:/Server/www/_contasks/bakend_contasks/certs/certificado.crt'; //caminho/do/certificado.pem
-    private $chavePrivada = 'C:/Server/www/_contasks/bakend_contasks/certs/certificado.key'; //caminho/da/chaveprivada.key
+    private $certificado = '/home/axibusiness.com.br/certs/certificado.crt'; //caminho/do/certificado.pem
+    private $chavePrivada = '/home/axibusiness.com.br/certs/certificado.key'; //caminho/da/chaveprivada.key
     private $chavePrivadaSenha = ""; // $this->connectBanco->setKeyPassword("senhadachave");
 
     public function __construct()
