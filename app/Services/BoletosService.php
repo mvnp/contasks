@@ -15,11 +15,8 @@ use ctodobom\APInterPHP\Cobranca\Multa;
 use ctodobom\APInterPHP\Cobranca\Pagador;
 use Exception;
 
-
 class BoletosService
 {
-    //protected $boletosRepository;
-
     private $connectBanco;
     private $conta = "115830308";
     private $cnpj = "33240999000103";
@@ -34,116 +31,27 @@ class BoletosService
         $this->connectBanco = new BancoInter($this->conta, $this->certificado, $this->chavePrivada);
     }
 
-    public function gerarBoleto($idDebito) // <<<<<< ---- show($id)
+    public function gerarBoleto($idDebito)
     {
-        $banco = new BancoInter($this->conta, $this->certificado, $this->chavePrivada);
         $boletosRepository = new BoletosRepository;
         $ArrayInfoDebito = $boletosRepository->getAll($idDebito);
         $boleto = $this->getBoleto($ArrayInfoDebito);
 
         try {
-
-
-
-
-            # $this->connectBanco->createBoleto($boleto);
-
-            $boleto = array(
-                'message' => 'Boleto foi gerado com sucesso.',
-                'data' => array(
-                  'dataEmissao' => '2021-12-01',
-                  'seuNumero' => '0209463320',
-                  'dataLimite' => 'SESSENTA',
-                  'dataVencimento' => '2021-12-11',
-                  'valorNominal' => 336.85,
-                  'valorAbatimento' => 0,
-                  'cnpjCPFBeneficiario' => '33240999000103',
-                  'numDiasAgenda' => 'SESSENTA',
-                  'pagador' => array(
-                    'cnpjCpf' => '10772017000110',
-                    'nome' => 'AXITECH NEGOCIOS DIGITAIS',
-                    'cep' => '88132212',
-                    'bairro' => 'Pagani',
-                    'endereco' => 'Rua Milão',
-                    'numero' => '95',
-                    'complemento' => 'Sala 601',
-                    'cidade' => 'Palhoça',
-                    'uf' => 'SC',
-                    'tipoPessoa' => 'JURIDICA',
-                    'email' => 'contato@axitech.com.br',
-                    'ddd' => '48',
-                    'telefone' => '991893313',
-                  ),
-                  'mensagem' => array (
-                    'linha1' => 'Linha 1',
-                    'linha2' => 'Linha 2',
-                    'linha3' => 'Linha 3',
-                    'linha4' => 'Linha 4',
-                    'linha5' => 'Linha 5',
-                  ),
-                  'desconto1' => array (
-                    'codigoDesconto' => 'NAOTEMDESCONTO',
-                    'taxa' => 0,
-                    'valor' => 0,
-                    'data' => '',
-                  ),
-                  'desconto2' => array (
-                    'codigoDesconto' => 'NAOTEMDESCONTO',
-                    'taxa' => 0,
-                    'valor' => 0,
-                    'data' => '',
-                  ),
-                  'desconto3' => array (
-                    'codigoDesconto' => 'NAOTEMDESCONTO',
-                    'taxa' => 0,
-                    'valor' => 0,
-                    'data' => '',
-                  ),
-                  'multa' => array (
-                    'codigoMulta' => 'NAOTEMMULTA',
-                    'valor' => 0,
-                    'taxa' => 0,
-                    'data' => '',
-                  ),
-                  'mora' => array (
-                    'codigoMora' => 'ISENTO',
-                    'valor' => 0,
-                    'taxa' => 0,
-                    'data' => '',
-                  ),
-                  'nossoNumero' => '00755519776',
-                  'codigoBarras' => '07793883100000336850001112043103300755519776',
-                  'linhaDigitavel' => '07790001161204310330307555197768388310000033685',
-                  'controller' => array (),
-                ),
-            );
-
-
-
-
+            $this->connectBanco->createBoleto($boleto);
             $this->registraBoleto($boleto);
-
-
-
             return $boleto;
-
-
-
         } catch (BancoInterException $e) {
-            return response()->json(['error' => $e->getMessage()], 401);
+            return $e->getMessage();
         }
     }
 
-    public function registraBoleto($boleto)
+    private function registraBoleto($boleto)
     {
         $boletosRepository = new BoletosRepository;
         $boleto = $boleto['data'];
 
-        $boletosRepository->save($boleto);
-        // Acessar o repository
-        // Montar o array das infos que vão na tabela
-        // Inserir os dados na tabela
-        // Pegar a resposta "true" e ir devolvendo até chegar no controller
+        return $boletosRepository->save($boleto);
     }
 
     public function getPagador($ArrayInfoDebito)
@@ -151,6 +59,7 @@ class BoletosService
         $dados = $ArrayInfoDebito;
 
         $pagador = new Pagador;
+
         $pagador->setTipoPessoa("JURIDICA");
         $pagador->setNome($dados->empresas->fantasia);
         $pagador->setEndereco($dados->empresas->rua);
@@ -171,6 +80,7 @@ class BoletosService
     public function getBoleto($infoDebito)
     {
         $boleto = new Boleto();
+
         $boleto->setCnpjCPFBeneficiario($this->cnpj);
         $boleto->setPagador($this->getPagador($infoDebito));
         $boleto->setSeuNumero($this->seuNumero);
@@ -202,6 +112,7 @@ class BoletosService
     public function getMulta()
     {
         $multa = new Multa;
+
         $multa->setCodigoMulta("NAOTEMMULTA");
         $multa->setValor(0);
         $multa->setTaxa(0);
@@ -212,6 +123,7 @@ class BoletosService
     public function getMora()
     {
         $multa = new Mora;
+
         $multa->setCodigoMora("ISENTO");
         $multa->setValor(0);
         $multa->setTaxa(0);
@@ -222,6 +134,7 @@ class BoletosService
     public function getDesconto1()
     {
         $desconto = new Desconto;
+
         $desconto->setCodigoDesconto("NAOTEMDESCONTO");
         $desconto->setValor(0);
         $desconto->setTaxa(0);
@@ -232,6 +145,7 @@ class BoletosService
     public function getDesconto2()
     {
         $desconto = new Desconto;
+
         $desconto->setCodigoDesconto("NAOTEMDESCONTO");
         $desconto->setValor(0);
         $desconto->setTaxa(0);
@@ -242,6 +156,7 @@ class BoletosService
     public function getDesconto3()
     {
         $desconto = new Desconto;
+
         $desconto->setCodigoDesconto("NAOTEMDESCONTO");
         $desconto->setValor(0);
         $desconto->setTaxa(0);
@@ -252,6 +167,7 @@ class BoletosService
     private function getPDFBoleto()
     {
         $boleto = new Boleto();
+
         $pagador = $this->getPagador();
 
         $boleto->setCnpjCPFBeneficiario($this->cnpj);
@@ -277,6 +193,7 @@ class BoletosService
     private function consultarBoleto()
     {
         $boleto = new Boleto();
+
         $pagador = $this->getPagador();
 
         $boleto->setCnpjCPFBeneficiario($this->cnpj);
@@ -302,6 +219,7 @@ class BoletosService
     private function baixarBoleto()
     {
         $boleto = new Boleto();
+
         $pagador = $this->getPagador();
 
         $boleto->setCnpjCPFBeneficiario($this->cnpj);
