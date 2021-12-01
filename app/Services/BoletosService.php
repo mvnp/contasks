@@ -49,10 +49,7 @@ class BoletosService
             $this->connectBanco->createBoleto($boleto);
             // $registrarBoleto = $this->registraBoleto($boleto);
 
-            return response()->json([
-                "message" => "Boleto foi gerado com sucesso.",
-                'data' => $boleto
-            ], 200);
+            return $boleto;
 
 
 
