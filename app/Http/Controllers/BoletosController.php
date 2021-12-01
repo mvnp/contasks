@@ -60,15 +60,15 @@ class BoletosController extends Controller
         $boletosService = new BoletosService;
         $debito = $boletosService->gerarBoleto($id);
 
-        if ($debito === true) {
-            return response()->json([
-                "message" => "Boleto foi gerado com sucesso."
-            ], 200);
-        }
+        // if ($debito === true) {
+        //     return response()->json([
+        //         "message" => "Boleto foi gerado com sucesso."
+        //     ], 200);
+        // }
 
-        return response()->json([
-            "message" => "Boleto não foi gerado."
-        ], 422);
+        // return response()->json([
+        //     "message" => "Boleto não foi gerado."
+        // ], 422);
     }
 
     public function update(Request $request, $id)
