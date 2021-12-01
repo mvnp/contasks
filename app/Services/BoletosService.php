@@ -24,8 +24,8 @@ class BoletosService
     private $conta = "115830308";
     private $cnpj = "33240999000103";
     private $seuNumero = "02094633240";
-    private $certificado = "../../certs/certificado.pem"; //caminho/do/certificado.pem
-    private $chavePrivada = "../../certs/certificado.key"; //caminho/da/chaveprivada.key
+    private $certificado = "./certs/certificado.pem"; //caminho/do/certificado.pem
+    private $chavePrivada = "./certs/certificado.key"; //caminho/da/chaveprivada.key
     private $chavePrivadaSenha = ""; // $this->connectBanco->setKeyPassword("senhadachave");
 
     public function __construct()
