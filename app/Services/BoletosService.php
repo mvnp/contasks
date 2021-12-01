@@ -23,7 +23,7 @@ class BoletosService
     private $connectBanco;
     private $conta = "115830308";
     private $cnpj = "33240999000103";
-    private $seuNumero = "02094633240";
+    private $seuNumero = "0209463320";
     private $certificado = '/home/axibusiness.com.br/certs/certificado.crt'; //caminho/do/certificado.pem
     private $chavePrivada = '/home/axibusiness.com.br/certs/certificado.key'; //caminho/da/chaveprivada.key
     private $chavePrivadaSenha = ""; // $this->connectBanco->setKeyPassword("senhadachave");

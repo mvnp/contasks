@@ -2,6 +2,7 @@
 
 namespace App\Repositories;
 
+use App\Models\Boletos;
 use App\Models\FinanceiroReceber;
 use App\Models\Empresas;
 
@@ -35,16 +36,16 @@ class BoletosRepository
 
     public function create($boleto)
     {
-        $boleto = array(
-            'seunumero' => $boleto->seuNumero()
-            'seunumero' => $boleto->seuNumero()
-            'seunumero' => $boleto->seuNumero()
-            'seunumero' => $boleto->seuNumero()
-            'seunumero' => $boleto->seuNumero()
-            'seunumero' => $boleto->seuNumero()
-            'seunumero' => $boleto->seuNumero()
-            'seunumero' => $boleto->seuNumero()
-        );
+        $boleto = array([
+            // 'seunumero' => $boleto->seuNumero()
+            // 'seunumero' => $boleto->seuNumero()
+            // 'seunumero' => $boleto->seuNumero()
+            // 'seunumero' => $boleto->seuNumero()
+            // 'seunumero' => $boleto->seuNumero()
+            // 'seunumero' => $boleto->seuNumero()
+            // 'seunumero' => $boleto->seuNumero()
+            // 'seunumero' => $boleto->seuNumero()
+        ]);
 
         // Model // save ou create
         if (Boletos::save($boleto)) {

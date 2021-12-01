@@ -22,11 +22,11 @@ class BoletosController extends Controller
      */
     public function index()
     {
-        $boletos = $this->boletosService->getAllData();
+        // $boletos = $this->boletosService->getAllData();
 
-        return response()->json([
-            'data' => $boletos
-        ]);
+        // return response()->json([
+        //     'data' => $boletos
+        // ]);
     }
 
     /**
@@ -66,9 +66,9 @@ class BoletosController extends Controller
             ], 200);
         }
 
-        return response()->json([
-            "message" => "Boleto não foi gerado."
-        ], 422);
+        // return response()->json([
+        //     "message" => "Boleto não foi gerado."
+        // ], 422);
     }
 
     public function update(Request $request, $id)
