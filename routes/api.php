@@ -35,7 +35,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 Route::post('auth/login', [AuthController::class, 'login']);
 
-Route::middleware(['apiJWT'])->group(function () {
+Route::middleware(['cors'])->middleware(['apiJWT'])->group(function () {
 
 
     Route::resource('empresas', EmpresasController::class);
