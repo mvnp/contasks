@@ -186,7 +186,7 @@ class BoletosService
         // // $infoBoleto->setDataVencimento(date_add(new \DateTime(), new \DateInterval("P10D")));
 
         try {
-            $pdf = $this->connectBanco->getPdfBoleto($nossoNumero, '/home/axibusiness.com.br/boletos/');
+            $pdf = $this->connectBanco->getPdfBoleto($nossoNumero, '/home/axibusiness.com.br/public/boletos/');
             //$this->registraPdfBoleto($infoBoleto, $idBoleto);
             echo "\n\nSalvo PDF em " . $pdf . "\n";
         } catch (BancoInterException $e) {
