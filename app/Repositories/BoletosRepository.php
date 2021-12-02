@@ -37,7 +37,7 @@ class BoletosRepository
     public function create($boleto)
     {
         // $boleto = array(
-        //     'seunumero' => $boleto->seuNumero()
+        //     'empresa_id' => $boleto->seuNumero()
         //     'seunumero' => $boleto->seuNumero()
         //     'seunumero' => $boleto->seuNumero()
         //     'seunumero' => $boleto->seuNumero()

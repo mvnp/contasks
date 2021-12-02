@@ -39,6 +39,10 @@ class BoletosService
         $banco = new BancoInter($this->conta, $this->certificado, $this->chavePrivada);
         $boletosRepository = new BoletosRepository;
         $ArrayInfoDebito = $boletosRepository->getAll($idDebito);
+
+
+        dd($ArrayInfoDebito);
+
         $boleto = $this->getBoleto($ArrayInfoDebito);
 
         try {
@@ -49,10 +53,6 @@ class BoletosService
             $this->connectBanco->createBoleto($boleto);
             // $registrarBoleto = $this->registraBoleto($boleto);
             return $boleto;
-
-
-
-
         } catch (BancoInterException $e) {
             return response()->json(['error' => $e->getMessage()], 401);
         }
