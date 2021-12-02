@@ -65,12 +65,15 @@ class BoletosController extends Controller
             'data' => $geradorBoleto
         ], 200);
 
+<<<<<<< HEAD
         // if ($debito === true) {
         //     return response()->json([
         //         "message" => "Boleto foi gerado com sucesso."
         //     ], 200);
         // }
 
+=======
+>>>>>>> e697de6c5779b2ee80679821de979cc0435cd022
         // return response()->json([
         //     "message" => "Boleto não foi gerado."
         // ], 422);

@@ -3,8 +3,6 @@
 namespace App\Services;
 
 use App\Repositories\BoletosRepository;
-use Illuminate\Support\Facades\Validator;
-use ctodobom\APInterPHP\StdSerializable;
 use ctodobom\APInterPHP\BancoInter;
 use ctodobom\APInterPHP\BancoInterException;
 use ctodobom\APInterPHP\Cobranca\Boleto;
@@ -13,13 +11,9 @@ use ctodobom\APInterPHP\Cobranca\Mensagem;
 use ctodobom\APInterPHP\Cobranca\Mora;
 use ctodobom\APInterPHP\Cobranca\Multa;
 use ctodobom\APInterPHP\Cobranca\Pagador;
-use Exception;
-
 
 class BoletosService
 {
-    //protected $boletosRepository;
-
     private $connectBanco;
     private $conta = "115830308";
     private $cnpj = "33240999000103";
@@ -34,9 +28,8 @@ class BoletosService
         $this->connectBanco = new BancoInter($this->conta, $this->certificado, $this->chavePrivada);
     }
 
-    public function gerarBoleto($idDebito) // <<<<<< ---- show($id)
+    public function gerarBoleto($idDebito)
     {
-        $banco = new BancoInter($this->conta, $this->certificado, $this->chavePrivada);
         $boletosRepository = new BoletosRepository;
         $ArrayInfoDebito = $boletosRepository->getAll($idDebito);
 
@@ -46,28 +39,20 @@ class BoletosService
         $boleto = $this->getBoleto($ArrayInfoDebito);
 
         try {
-
-
-
-
             $this->connectBanco->createBoleto($boleto);
-            // $registrarBoleto = $this->registraBoleto($boleto);
+            $this->registraBoleto($boleto);
             return $boleto;
         } catch (BancoInterException $e) {
-            return response()->json(['error' => $e->getMessage()], 401);
+            return $e->getMessage();
         }
     }
 
-    public function registraBoleto($boleto)
+    private function registraBoleto($boleto)
     {
         $boletosRepository = new BoletosRepository;
-        // Acessar o repository
-        // Montar o array das infos que vão na tabela
-        // Inserir os dados na tabela
-        // Pegar a resposta "true" e ir devolvendo até chegar no controller
-        if ($boletosRepository->create($boleto)) { // true
-            return true;
-        }
+        $boleto = $boleto['data'];
+
+        return $boletosRepository->save($boleto);
     }
 
     public function getPagador($ArrayInfoDebito)
@@ -75,6 +60,7 @@ class BoletosService
         $dados = $ArrayInfoDebito;
 
         $pagador = new Pagador;
+
         $pagador->setTipoPessoa("JURIDICA");
         $pagador->setNome($dados->empresas->fantasia);
         $pagador->setEndereco($dados->empresas->rua);
@@ -95,6 +81,7 @@ class BoletosService
     public function getBoleto($infoDebito)
     {
         $boleto = new Boleto();
+
         $boleto->setCnpjCPFBeneficiario($this->cnpj);
         $boleto->setPagador($this->getPagador($infoDebito));
         $boleto->setSeuNumero($this->seuNumero);
@@ -126,6 +113,7 @@ class BoletosService
     public function getMulta()
     {
         $multa = new Multa;
+
         $multa->setCodigoMulta("NAOTEMMULTA");
         $multa->setValor(0);
         $multa->setTaxa(0);
@@ -136,6 +124,7 @@ class BoletosService
     public function getMora()
     {
         $multa = new Mora;
+
         $multa->setCodigoMora("ISENTO");
         $multa->setValor(0);
         $multa->setTaxa(0);
@@ -146,6 +135,7 @@ class BoletosService
     public function getDesconto1()
     {
         $desconto = new Desconto;
+
         $desconto->setCodigoDesconto("NAOTEMDESCONTO");
         $desconto->setValor(0);
         $desconto->setTaxa(0);
@@ -156,6 +146,7 @@ class BoletosService
     public function getDesconto2()
     {
         $desconto = new Desconto;
+
         $desconto->setCodigoDesconto("NAOTEMDESCONTO");
         $desconto->setValor(0);
         $desconto->setTaxa(0);
@@ -166,6 +157,7 @@ class BoletosService
     public function getDesconto3()
     {
         $desconto = new Desconto;
+
         $desconto->setCodigoDesconto("NAOTEMDESCONTO");
         $desconto->setValor(0);
         $desconto->setTaxa(0);
@@ -176,6 +168,7 @@ class BoletosService
     private function getPDFBoleto()
     {
         $boleto = new Boleto();
+
         $pagador = $this->getPagador();
 
         $boleto->setCnpjCPFBeneficiario($this->cnpj);
@@ -201,6 +194,7 @@ class BoletosService
     private function consultarBoleto()
     {
         $boleto = new Boleto();
+
         $pagador = $this->getPagador();
 
         $boleto->setCnpjCPFBeneficiario($this->cnpj);
@@ -226,6 +220,7 @@ class BoletosService
     private function baixarBoleto()
     {
         $boleto = new Boleto();
+
         $pagador = $this->getPagador();
 
         $boleto->setCnpjCPFBeneficiario($this->cnpj);

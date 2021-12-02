@@ -51,8 +51,8 @@ Route::middleware(['cors'])->middleware(['apiJWT'])->group(function () {
     Route::resource('config-atividades', ConfigAtividadesController::class);
     Route::resource('config-setores', ConfigSetoresController::class);
 
-    Route::resource('financeiro-receber', FinaceiroReceberController::class);
-    Route::resource('financeiro-pagar', FinaceiroPagarController::class);
+    Route::resource('receives', FinaceiroReceberController::class);
+    Route::resource('payments', FinaceiroPagarController::class);
 
     Route::get('auth/me', [AuthController::class, 'me']);
     Route::get('auth/logout', [AuthController::class, 'logout']);
