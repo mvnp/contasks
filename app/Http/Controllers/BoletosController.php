@@ -65,18 +65,24 @@ class BoletosController extends Controller
             'data' => $geradorBoleto
         ], 200);
 
-<<<<<<< HEAD
-        // if ($debito === true) {
-        //     return response()->json([
-        //         "message" => "Boleto foi gerado com sucesso."
-        //     ], 200);
-        // }
-
-=======
->>>>>>> e697de6c5779b2ee80679821de979cc0435cd022
         // return response()->json([
         //     "message" => "Boleto não foi gerado."
         // ], 422);
+    }
+
+    public function savePdf($id)
+    {
+        $boletosService = new BoletosService;
+        $savePdf = $boletosService->getPDFBoleto($id);
+
+        return response()->json([
+            "message" => "PDF boleto foi gerado com sucesso.",
+            'data' => $savePdf
+        ], 200);
+
+        // return response()->json([
+        //     "message" => $debito
+        // ], 200);
     }
 
     public function update(Request $request, $id)

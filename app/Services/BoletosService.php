@@ -32,10 +32,6 @@ class BoletosService
     {
         $boletosRepository = new BoletosRepository;
         $ArrayInfoDebito = $boletosRepository->getAll($idDebito);
-
-
-        dd($ArrayInfoDebito);
-
         $boleto = $this->getBoleto($ArrayInfoDebito);
 
         try {
@@ -165,30 +161,55 @@ class BoletosService
         return $desconto;
     }
 
-    private function getPDFBoleto()
+    public function getPDFBoleto($idBoleto)
     {
-        $boleto = new Boleto();
+        $boletosRepository = new BoletosRepository;
+        $infoBoleto = $boletosRepository->getBoleto($idBoleto);
 
-        $pagador = $this->getPagador();
+        $nossoNumero = $infoBoleto['nosso_numero'];
 
-        $boleto->setCnpjCPFBeneficiario($this->cnpj);
-        $boleto->setPagador($pagador);
-        $boleto->setSeuNumero($this->seuNumero);
-        $boleto->setDataEmissao(date('Y-m-d'));
-        $boleto->setValorNominal(100.10);
-        $boleto->setDataVencimento(date_add(new \DateTime(), new \DateInterval("P10D")));
+        //$pdfBoleto = $this->getBoleto($infoBoleto);
+
+
+
+        // $boleto = new Boleto($idBoleto);
+
+        // $pagador = $this->getPagador();
+
+        // $infoBoleto->setCnpjCPFBeneficiario($idBoleto[$cnpj]);
+        // $infoBoleto->setPagador($idBoleto['pagador']);
+        //$infoBoleto->setSeuNumero($idBoleto['seuNumero']);
+        // $infoBoleto->setnossoNumero('nosso_numero');
+        // //$infoBoleto->setnossoNumero => $nossoNumero['nosso_numero'];
+        // // $infoBoleto->setDataEmissao(date('Y-m-d'));
+        // // $infoBoleto->setValorNominal($idBoleto['valor']);
+        // // $infoBoleto->setDataVencimento(date_add(new \DateTime(), new \DateInterval("P10D")));
 
         try {
-            echo "\Download do PDF\n";
-            $pdf = $this->connectBanco->getPdfBoleto($boleto->getNossoNumero());
+            $pdf = $this->connectBanco->getPdfBoleto($nossoNumero);
+            //$this->registraPdfBoleto($infoBoleto, $idBoleto);
             echo "\n\nSalvo PDF em " . $pdf . "\n";
         } catch (BancoInterException $e) {
-            echo "\n\n" . $e->getMessage();
-            echo "\n\nCabeçalhos: \n";
-            echo $e->reply->header;
-            echo "\n\nConteúdo: \n";
-            echo $e->reply->body;
+            return $e->getMessage();
         }
+
+        // $this->connectBanco->createBoleto($boleto);
+        //     $this->registraBoleto($boleto);
+        //     return $boleto;
+        // } catch (BancoInterException $e) {
+        //     return $e->getMessage();
+        // }
+
+
+        return $nossoNumero;
+    }
+
+    private function registraPdfBoleto($infoDebito, $id)
+    {
+        $boletosRepository = new BoletosRepository;
+        $pdfboleto = $infoDebito['data'];
+
+        return $boletosRepository->savePdf($pdfboleto);
     }
 
     private function consultarBoleto()

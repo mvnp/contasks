@@ -43,7 +43,12 @@ Route::middleware(['cors'])->middleware(['apiJWT'])->group(function () {
     Route::resource('dashboard', DashboardController::class);
     Route::resource('tarefas', TarefasController::class);
     Route::resource('setores', SetoresController::class);
+
     Route::resource('boletos', BoletosController::class);
+    Route::get('/boletos/savePdf/{debito}', [BoletosController::class, 'savePdf']);
+
+
+
     Route::resource('atividades', AtividadesController::class);
     Route::resource('relatorios', RelatoriosController::class);
 

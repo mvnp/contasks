@@ -29,30 +29,8 @@ class BoletosRepository
         //$financeiroReceber = FinanceiroReceber::with('empresas')->findOrFail($id);
     }
 
-    public function getBanco($conta)
-    {
-        //
-    }
-
     public function save($boleto)
     {
-<<<<<<< HEAD
-        // $boleto = array(
-        //     'empresa_id' => $boleto->seuNumero()
-        //     'seunumero' => $boleto->seuNumero()
-        //     'seunumero' => $boleto->seuNumero()
-        //     'seunumero' => $boleto->seuNumero()
-        //     'seunumero' => $boleto->seuNumero()
-        //     'seunumero' => $boleto->seuNumero()
-        //     'seunumero' => $boleto->seuNumero()
-        //     'seunumero' => $boleto->seuNumero()
-        // );
-
-        // Model // save ou create
-        // if (Boletos::save($boleto)) {
-        //     return true;
-        // }
-=======
         $model = new Boletos;
 
         $model->empresa_id = 251;
@@ -67,6 +45,16 @@ class BoletosRepository
         $model->pago = 0;
 
         $model->save();
->>>>>>> e697de6c5779b2ee80679821de979cc0435cd022
+    }
+
+    public function getBoleto($idBoleto)
+    {
+        $model = new Boletos;
+        return $model->findOrFail(1);
+    }
+
+    public function savePdf($pdfBoleto)
+    {
+        return $pdfBoleto;
     }
 }
