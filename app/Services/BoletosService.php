@@ -32,7 +32,7 @@ class BoletosService
 
     public function gerarBoleto($idDebito)
     {
-        if (FinanceiroReceber::with('boleto')->find($idDebito)->financeiro_receber_id) {
+        if (FinanceiroReceber::with('boleto')->find($idDebito)->boleto) {
             return true;
         }
         return false;
