@@ -176,6 +176,10 @@ class BoletosService
         } catch (\Exception $e) {
             return response()->json(['error' => $e->getMessage()], 500);
         }
+
+
+
+        
     }
 
     // private function registraPdfBoleto($nossoNumero)
