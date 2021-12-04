@@ -58,7 +58,7 @@ class BoletosRepository
     public function updatePdfBoleto($idBoleto, $filename)
     {
         $model = Boletos::find($idBoleto);
-        $model->boleto_arquivo = $filenam;
+        $model->boleto_arquivo = $filename;
         $saved = $model->save();
 
         if (!$saved) {
