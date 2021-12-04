@@ -50,11 +50,17 @@ class BoletosRepository
     public function getBoleto($idBoleto)
     {
         $model = new Boletos;
-        return $model->findOrFail(1);
+        return $model->findOrFail($idBoleto);
     }
 
-    public function savePdf($pdfBoleto)
+    public function savePdfBoleto($pdf)
     {
-        return $pdfBoleto;
+        $model = new Boletos;
+        //return $pdfBoleto;
+
+
+        $model->boleto_arquivo = $pdf;
+
+        $model->save();
     }
 }

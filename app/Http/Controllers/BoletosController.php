@@ -73,11 +73,11 @@ class BoletosController extends Controller
     public function savePdf($id)
     {
         $boletosService = new BoletosService;
-        $savePdf = $boletosService->getPDFBoleto($id);
+        $pdfBoleto = $boletosService->getPDFBoleto($id);
 
         return response()->json([
-            "message" => "PDF boleto foi gerado com sucesso.",
-            'data' => $savePdf
+            "message" => "PDF boleto foi gerado com sucesso e salvo com sucesso.",
+            'data' => $pdfBoleto
         ], 200);
 
         // return response()->json([

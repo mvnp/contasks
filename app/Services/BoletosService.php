@@ -166,51 +166,46 @@ class BoletosService
         $boletosRepository = new BoletosRepository;
         $infoBoleto = $boletosRepository->getBoleto($idBoleto);
 
+
+
         $nossoNumero = $infoBoleto['nosso_numero'];
-
-        //$pdfBoleto = $this->getBoleto($infoBoleto);
-
-
-
-        // $boleto = new Boleto($idBoleto);
-
-        // $pagador = $this->getPagador();
-
-        // $infoBoleto->setCnpjCPFBeneficiario($idBoleto[$cnpj]);
-        // $infoBoleto->setPagador($idBoleto['pagador']);
-        //$infoBoleto->setSeuNumero($idBoleto['seuNumero']);
-        // $infoBoleto->setnossoNumero('nosso_numero');
-        // //$infoBoleto->setnossoNumero => $nossoNumero['nosso_numero'];
-        // // $infoBoleto->setDataEmissao(date('Y-m-d'));
-        // // $infoBoleto->setValorNominal($idBoleto['valor']);
-        // // $infoBoleto->setDataVencimento(date_add(new \DateTime(), new \DateInterval("P10D")));
 
         try {
             $pdf = $this->connectBanco->getPdfBoleto($nossoNumero, '/home/axibusiness.com.br/public/boletos/');
-            //$this->registraPdfBoleto($infoBoleto, $idBoleto);
-            echo "\n\nSalvo PDF em " . $pdf . "\n";
+            //echo "\n\nSalvo PDF em " . $pdf . "\n";
+
+            $filename = explode("/", $pdf);
+            $filename = end($filename);
+
+            return $filename;
+
+
+
+
+
+
+
+            //$this->savePdfBoleto($nossoNumero, '/home/axibusiness.com.br/public/boletos/');
         } catch (BancoInterException $e) {
             return $e->getMessage();
         }
 
-        // $this->connectBanco->createBoleto($boleto);
-        //     $this->registraBoleto($boleto);
-        //     return $boleto;
-        // } catch (BancoInterException $e) {
-        //     return $e->getMessage();
-        // }
-
-
-        return $nossoNumero;
+        // return $pdf;
     }
 
-    private function registraPdfBoleto($infoDebito, $id)
-    {
-        $boletosRepository = new BoletosRepository;
-        $pdfboleto = $infoDebito['data'];
+    // private function registraPdfBoleto($nossoNumero)
+    // {
+    //     $boletosRepository = new BoletosRepository;
+    //     $infoBoleto = $boletosRepository->getBoleto($idBoleto);
 
-        return $boletosRepository->savePdf($pdfboleto);
-    }
+    //     $nossoNumero = $infoBoleto['nosso_numero'];
+
+    //     vardump
+
+    //     $pdf = $this->connectBanco->getPdfBoleto($nossoNumero, '/home/axibusiness.com.br/public/boletos/');
+
+    //     return $boletosRepository->savePdf($pdfboleto);
+    // }
 
     private function consultarBoleto()
     {
