@@ -59,5 +59,7 @@ class BoletosRepository
         $model = Boletos::find($idBoleto);
         $model->boleto_arquivo = $filename;
         $model->save();
+
+        return 
     }
 }

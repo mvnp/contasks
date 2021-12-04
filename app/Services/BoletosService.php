@@ -176,6 +176,8 @@ class BoletosService
         } catch (BancoInterException $e) {
             return $e->getMessage();
         }
+
+        return $filename;
     }
 
     // private function registraPdfBoleto($nossoNumero)
