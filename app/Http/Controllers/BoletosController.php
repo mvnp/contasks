@@ -76,7 +76,6 @@ class BoletosController extends Controller
         $pdfBoleto = $boletosService->getPDFBoleto($id);
 
         return response()->json([
-            "message" => "PDF boleto foi gerado com sucesso e salvo com sucesso.",
             'data' => $pdfBoleto
         ], 200);
 
