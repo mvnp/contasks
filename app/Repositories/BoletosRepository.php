@@ -59,7 +59,7 @@ class BoletosRepository
     {
         $model = Boletos::find($idBoleto);
         $model->boleto_arquivo = $filename;
-        $saved = $model->save();
+        $model = $model->save();
 
         // if (!$saved) {
         //     App::abort(500, ['error' => 'Não foi possível salvar o PDF.']);
@@ -68,7 +68,7 @@ class BoletosRepository
         // $data = $request->all();
 
         try {
-            $model = $this->Boletos->save($saved);
+            $model = $this->Boletos->save();
             return response()->json($model, 200);
 
             return response()->json([
