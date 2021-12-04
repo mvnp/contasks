@@ -172,7 +172,7 @@ class BoletosService
 
             $filename = explode("/", $pdf);
             $filename = end($filename);
-            $boletosRepository->updatePdfBoleto($idBoleto, $filenam);
+            $boletosRepository->updatePdfBoleto($idBolet, $filenam);
         } catch (BancoInterException $e) {
             return $e->getMessage();
         }
