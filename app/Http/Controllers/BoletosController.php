@@ -61,7 +61,7 @@ class BoletosController extends Controller
         $geradorBoleto = $boletosService->gerarBoleto($id);
 
         return response()->json([
-            "message" => "Boleto foi gerado com sucesso.",
+            //"message" => "Boleto foi gerado com sucesso.",
             'data' => $geradorBoleto
         ], 200);
 
