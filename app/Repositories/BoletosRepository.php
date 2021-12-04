@@ -6,6 +6,7 @@ use App\Models\Boletos;
 use App\Models\FinanceiroReceber;
 use App\Models\Empresas;
 use GuzzleHttp\Psr7\Request;
+use Illuminate\Support\Facades\App;
 
 class BoletosRepository
 {
@@ -58,6 +59,10 @@ class BoletosRepository
     {
         $model = Boletos::find($idBoleto);
         $model->boleto_arquivo = $filename;
-        $model->save();
+        $saved = $model->save();
+
+        if (!$saved) {
+            App::abort(500, ['error' => 'Não foi possível salvar o PDF.']);
+        }
     }
 }
