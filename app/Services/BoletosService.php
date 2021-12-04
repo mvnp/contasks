@@ -2,6 +2,7 @@
 
 namespace App\Services;
 
+use App\Models\Boletos;
 use App\Repositories\BoletosRepository;
 use ctodobom\APInterPHP\BancoInter;
 use ctodobom\APInterPHP\BancoInterException;
@@ -30,6 +31,10 @@ class BoletosService
 
     public function gerarBoleto($idDebito)
     {
+        if (Boletos::with('financeiroReceber')->find($idDebito)->financeiro_id) {
+            return true;
+        }
+        return false;
         $boletosRepository = new BoletosRepository;
         $ArrayInfoDebito = $boletosRepository->getAll($idDebito);
         $boleto = $this->getBoleto($ArrayInfoDebito);
@@ -176,10 +181,6 @@ class BoletosService
         } catch (\Exception $e) {
             return response()->json(['error' => $e->getMessage()], 500);
         }
-
-
-
-        
     }
 
     // private function registraPdfBoleto($nossoNumero)
