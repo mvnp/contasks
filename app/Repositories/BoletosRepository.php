@@ -59,24 +59,12 @@ class BoletosRepository
     {
         $model = Boletos::find($idBoleto);
         $model->boleto_arquivo = $filename;
-        $model = $model->save();
+        $saved = $model->save();
 
-        // if (!$saved) {
-        //     App::abort(500, ['error' => 'Não foi possível salvar o PDF.']);
-        // }
-
-        // $data = $request->all();
-
-        try {
-            $model->Boletos->save();
-            return response()->json($model, 200);
-
-            return response()->json([
-                'data' => $model,
-                'message' => 'Arquivo PDF salvo com sucesso.'
-            ], 200);
-        } catch (\Exception $e) {
-            return response()->json(['error' => $e->getMessage()], 500);
+        if (!$saved) {
+            App::abort(500, ['error', 500]);
+        } else {
+            return 'Arquivo PDF salvo com sucesso.';
         }
     }
 }
