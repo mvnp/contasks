@@ -53,14 +53,11 @@ class BoletosRepository
         return $model->findOrFail($idBoleto);
     }
 
-    public function savePdfBoleto($pdf)
+
+    public function updatePdfBoleto($idBoleto, $filename)
     {
-        $model = new Boletos;
-        //return $pdfBoleto;
-
-
-        $model->boleto_arquivo = $pdf;
-
+        $model = Boletos::find($idBoleto);
+        $model->boleto_arquivo = $filename;
         $model->save();
     }
 }

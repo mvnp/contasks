@@ -165,32 +165,17 @@ class BoletosService
     {
         $boletosRepository = new BoletosRepository;
         $infoBoleto = $boletosRepository->getBoleto($idBoleto);
-
-
-
         $nossoNumero = $infoBoleto['nosso_numero'];
 
         try {
             $pdf = $this->connectBanco->getPdfBoleto($nossoNumero, '/home/axibusiness.com.br/public/boletos/');
-            //echo "\n\nSalvo PDF em " . $pdf . "\n";
 
             $filename = explode("/", $pdf);
             $filename = end($filename);
-
-            return $filename;
-
-
-
-
-
-
-
-            //$this->savePdfBoleto($nossoNumero, '/home/axibusiness.com.br/public/boletos/');
+            $boletosRepository->updatePdfBoleto($idBoleto, $filename);
         } catch (BancoInterException $e) {
             return $e->getMessage();
         }
-
-        // return $pdf;
     }
 
     // private function registraPdfBoleto($nossoNumero)
