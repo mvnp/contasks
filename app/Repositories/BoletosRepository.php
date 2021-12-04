@@ -68,7 +68,7 @@ class BoletosRepository
         // $data = $request->all();
 
         try {
-            $model = $this->Boletos->save();
+            $model->Boletos->save();
             return response()->json($model, 200);
 
             return response()->json([
