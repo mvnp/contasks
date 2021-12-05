@@ -33,7 +33,7 @@ class BoletosService
     public function gerarBoleto($idDebito)
     {
         if (FinanceiroReceber::with('boleto')->find($idDebito)->boleto) {
-            return 'true';
+            return true;
         }
 
         $boletosRepository = new BoletosRepository;
@@ -42,7 +42,7 @@ class BoletosService
 
         try {
             $this->connectBanco->createBoleto($boleto);
-            $this->registraBoleto($boleto);
+            $this->registraBoleto($bolet);
             return $boleto;
         } catch (BancoInterException $e) {
             return $e->getMessage();
