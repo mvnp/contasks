@@ -58,16 +58,25 @@ class BoletosController extends Controller
     public function show($id)
     {
         $boletosService = new BoletosService;
+        $geradorBoleto = $boletosService->gerarBoleto($id);
 
-        try {
-            $geradorBoleto = $boletosService->gerarBoleto($id);
-            return response()->json([
-                "message" => "Boleto foi gerado com sucesso.",
-                'data' => $geradorBoleto
-            ], 200);
-        } catch (\Exception $e) {
-            return response()->json(['error' => "Boleto não foi gerado."], 401);
-        }
+        dd($geradorBoleto);
+
+        match ($geradorBoleto) {
+            true => response()->json(['error' => 'Boleto já existe.']),
+            $geradorBoleto->id => response()->json(['error' => 'Boleto foi criado com sucesso.']),
+            default => throw new \Exception('Não foi possível criar boleto'),
+        };
+
+        // try {
+        //     $geradorBoleto = $boletosService->gerarBoleto($id);
+        //     return response()->json([
+        //         "message" => "Boleto foi gerado com sucesso.",
+        //         'data' => $geradorBoleto
+        //     ], 200);
+        // } catch (\Exception $e) {
+        //     return response()->json(['error' => "Boleto não foi gerado."], 401);
+        // }
     }
 
     public function savePdf($id)
