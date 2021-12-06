@@ -33,7 +33,7 @@ class BoletosService
     public function gerarBoleto($idDebito)
     {
         if (FinanceiroReceber::with('boleto')->find($idDebito)->boleto) {
-            return $idDebito;
+            return true;
         }
 
         $boletosRepository = new BoletosRepository;
