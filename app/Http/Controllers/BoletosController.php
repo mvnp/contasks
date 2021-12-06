@@ -69,8 +69,6 @@ class BoletosController extends Controller
             return response()->json(['error' => "Boleto não foi gerado."], 401);
         }
 
-        var_dump($geradorBoleto);
-
         // match ($geradorBoleto) {
         //     true => response()->json(['error' => 'Boleto já existe.']),
         //     $geradorBoleto->id => response()->json(['data' => 'Boleto foi criado com sucesso.']),
