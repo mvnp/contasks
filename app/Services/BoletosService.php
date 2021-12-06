@@ -32,15 +32,11 @@ class BoletosService
 
     public function gerarBoleto($idDebito)
     {
-        // if (FinanceiroReceber::with('boleto')->find($idDebito)->boleto) {
-        //     return true;
-        // }
-
         $boletosRepository = new BoletosRepository;
         $ArrayInfoDebito = $boletosRepository->getAll($idDebito);
         $boleto = $this->getBoleto($ArrayInfoDebito);
 
-        dd($ArrayInfoDebito);
+        //dd($ArrayInfoDebito);
 
         try {
             $this->connectBanco->createBoleto($boleto);
@@ -50,6 +46,11 @@ class BoletosService
             return $e->getMessage();
         }
     }
+
+    // if (FinanceiroReceber::with('boleto')->find($idDebito)->boleto) {
+    //     return true;
+    // }
+
 
     private function registraBoleto($boleto)
     {
