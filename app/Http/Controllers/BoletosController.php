@@ -60,17 +60,31 @@ class BoletosController extends Controller
         $boletosService = new BoletosService;
         $geradorBoleto = $boletosService->gerarBoleto($id);
 
-        try {
-            match ($geradorBoleto) {
-                $geradorBoleto->id => response()->json([
+        switch ($geradorBoleto) {
+            case true:
+                return response()->json(['error' => 'Boleto já existe.']);
+                break;
+            case $geradorBoleto->id:
+                return response()->json([
                     "message" => 'Boleto foi criado com sucesso.',
                     'data' => $geradorBoleto
-                ], 200),
-                true => response()->json(['error' => 'Boleto já existe.'])
-            };
-        } catch (\UnhandledMatchError $e) {
-            return response()->json(['error' => "Boleto não foi gerado."], 401);
+                ], 200);
+                break;
+            default:
+                return response()->json(['error' => "Boleto não foi gerado."], 401);
         }
+
+        // try {
+        //     match ($geradorBoleto) {
+        //         $geradorBoleto->id => response()->json([
+        //             "message" => 'Boleto foi criado com sucesso.',
+        //             'data' => $geradorBoleto
+        //         ], 200),
+        //         true => response()->json(['error' => 'Boleto já existe.'])
+        //     };
+        // } catch (\UnhandledMatchError $e) {
+        //     return response()->json(['error' => "Boleto não foi gerado."], 401);
+        // }
 
         //var_dump($geradorBoleto);
 
