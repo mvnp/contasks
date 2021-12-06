@@ -32,6 +32,8 @@ class BoletosRepository
 
     public function save($boleto)
     {
+        dd($boleto);
+
         $model = new Boletos;
 
         $model->empresa_id = 251;
