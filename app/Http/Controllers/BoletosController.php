@@ -61,7 +61,7 @@ class BoletosController extends Controller
         $geradorBoleto = $boletosService->gerarBoleto($id);
 
         switch ($geradorBoleto) {
-            case true:
+            case ('boleto_id'):
                 return response()->json(['error' => 'Boleto já existe.'], 422);
                 break;
             case ($geradorBoleto):
