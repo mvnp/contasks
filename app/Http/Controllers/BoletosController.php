@@ -60,13 +60,13 @@ class BoletosController extends Controller
         $boletosService = new BoletosService;
         $geradorBoleto = $boletosService->gerarBoleto($id);
 
-        dd($geradorBoleto);
+        //dd($geradorBoleto)
 
-        // match ($geradorBoleto) {
-        //     true => response()->json(['error' => 'Boleto já existe.']),
-        //     $geradorBoleto->id => response()->json(['error' => 'Boleto foi criado com sucesso.']),
-        //     default => throw new \Exception('Não foi possível criar boleto'),
-        // };
+        match ($geradorBoleto) {
+            true => response()->json(['error' => 'Boleto já existe.']),
+            $geradorBoleto->id => response()->json(['error' => 'Boleto foi criado com sucesso.']),
+            default => throw new \Exception('Não foi possível criar boleto'),
+        };
 
         // try {
         //     $geradorBoleto = $boletosService->gerarBoleto($id);
