@@ -36,7 +36,6 @@ class BoletosService
         $ArrayInfoDebito = $boletosRepository->getAll($idDebito);
         $boleto = $this->getBoleto($ArrayInfoDebito);
 
-        dd($idDebito);
 
         try {
             $this->connectBanco->createBoleto($boleto);
