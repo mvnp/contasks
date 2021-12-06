@@ -55,6 +55,8 @@ class BoletosService
     private function registraBoleto($boleto)
     {
         $boletosRepository = new BoletosRepository;
+
+        var_dump($boleto);
         return $boletosRepository->save($boleto);
     }
 
