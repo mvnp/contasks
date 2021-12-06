@@ -36,13 +36,13 @@ class BoletosRepository
 
         $model->empresa_id = 251;
         $model->financeiro_id = 1;
-        $model->seu_numero = $boleto->seuNumero;
-        $model->codigo_barras = $boleto->codigoBarras;
-        $model->linha_digitavel = $boleto->linhaDigitavel;
+        $model->seu_numero = $boleto['seuNumero'];
+        $model->codigo_barras = $boleto['codigoBarras'];
+        $model->linha_digitavel = $boleto['linhaDigitavel'];
         $model->boleto_arquivo = null;
-        $model->nosso_numero = $boleto->nossoNumero;
-        $model->emissao = $boleto->dataEmissao;
-        $model->vencimento = $boleto->dataVencimento;
+        $model->nosso_numero = $boleto['nossoNumero'];
+        $model->emissao = $boleto['dataEmissao'];
+        $model->vencimento = $boleto['dataVencimento'];
         $model->pago = 0;
 
         $model->save();
