@@ -58,50 +58,25 @@ class BoletosController extends Controller
     public function show($id)
     {
         $boletosService = new BoletosService;
+        $geradorBoleto = $boletosService->gerarBoleto($id);
 
+        dd($geradorBoleto);
 
-        // switch ($geradorBoleto = $boletosService->gerarBoleto($id)) {
-        //     case ('boleto_id'):
-        //         return response()->json(['error' => 'Boleto já existe.'], 422);
-
-        //     case ($geradorBoleto):
-        //         return response()->json(['data' => 'Boleto foi criado com sucesso.'], 200);
-
-        //     default:
-        //         return response()->json(['error' => "Boleto não foi gerado."], 401);
-        // }
-
-        // try {
-        //     match ($geradorBoleto) {
-        //         $geradorBoleto->id => response()->json([
-        //             "message" => 'Boleto foi criado com sucesso.',
-        //             'data' => $geradorBoleto
-        //         ], 200),
-        //         true => response()->json(['error' => 'Boleto já existe.'])
-        //     };
-        // } catch (\UnhandledMatchError $e) {
-        //     return response()->json(['error' => "Boleto não foi gerado."], 401);
-        // }
-
-        //var_dump($geradorBoleto);
-
-        // $result = match ($geradorBoleto) {
-        //     $geradorBoleto >= true => response()->json(['error' => 'Boleto já existe.']),
-        //     $geradorBoleto >= false => response()->json(['data' => 'Boleto foi criado com sucesso.']),
+        // match ($geradorBoleto) {
+        //     true => response()->json(['error' => 'Boleto já existe.']),
+        //     $geradorBoleto->id => response()->json(['error' => 'Boleto foi criado com sucesso.']),
         //     default => throw new \Exception('Não foi possível criar boleto'),
         // };
 
-        //return $result;
-
-        try {
-            $geradorBoleto = $boletosService->gerarBoleto($id);
-            return response()->json([
-                "message" => "Boleto foi gerado com sucesso.",
-                'data' => $geradorBoleto
-            ], 200);
-        } catch (\Exception $e) {
-            return response()->json(['error' => "Boleto não foi gerado."], 401);
-        }
+        // try {
+        //     $geradorBoleto = $boletosService->gerarBoleto($id);
+        //     return response()->json([
+        //         "message" => "Boleto foi gerado com sucesso.",
+        //         'data' => $geradorBoleto
+        //     ], 200);
+        // } catch (\Exception $e) {
+        //     return response()->json(['error' => "Boleto não foi gerado."], 401);
+        // }
     }
 
     public function savePdf($id)
