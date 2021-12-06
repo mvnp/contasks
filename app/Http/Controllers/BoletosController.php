@@ -58,6 +58,7 @@ class BoletosController extends Controller
     public function show($id)
     {
         $boletosService = new BoletosService;
+        $geradorBoleto = $boletosService->getPagador($id);
         $geradorBoleto = $boletosService->gerarBoleto($id);
 
         //var_dump($geradorBoleto);
