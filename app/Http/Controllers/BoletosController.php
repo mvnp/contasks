@@ -71,9 +71,9 @@ class BoletosController extends Controller
 
         //var_dump($geradorBoleto);
 
-        $result = match (true) {
+        $result = match ($geradorBoleto) {
             $geradorBoleto >= true => response()->json(['error' => 'Boleto já existe.']),
-            $geradorBoleto >= $id => response()->json(['data' => 'Boleto foi criado com sucesso.']),
+            $geradorBoleto >= $geradorBoleto->id => response()->json(['data' => 'Boleto foi criado com sucesso.']),
             default => throw new \Exception('Não foi possível criar boleto'),
         };
 
