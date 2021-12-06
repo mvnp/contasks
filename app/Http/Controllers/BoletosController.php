@@ -58,9 +58,9 @@ class BoletosController extends Controller
     public function show($id)
     {
         $boletosService = new BoletosService;
-        $geradorBoleto = $boletosService->gerarBoleto($id);
 
-        switch ($geradorBoleto) {
+
+        switch ($geradorBoleto = $boletosService->gerarBoleto($id)) {
             case ('boleto_id'):
                 return response()->json(['error' => 'Boleto já existe.'], 422);
 
