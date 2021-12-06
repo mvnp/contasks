@@ -56,7 +56,7 @@ class BoletosService
     {
         $boletosRepository = new BoletosRepository;
 
-        var_dump($boleto);
+        dd($boleto);
         return $boletosRepository->save($boleto);
     }
 
