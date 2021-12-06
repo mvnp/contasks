@@ -2,10 +2,19 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
+use App\Models\ConfigTarefas;
+use App\Http\Controllers\Controller;
+use App\Http\Requests\ConfigTarefaRequest;
 
 class ConfigTarefasController extends Controller
 {
+    private $configTarefas;
+
+    public function __construct(ConfigTarefas $configTarefas)
+    {
+        $this->configTarefas = $configTarefas;
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -13,17 +22,12 @@ class ConfigTarefasController extends Controller
      */
     public function index()
     {
-        //
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
+        try {
+            $configTarefas = ConfigTarefas::with('configAtividades')->get();
+            return response()->json($configTarefas, 200);
+        } catch (\Exception $e) {
+            return response()->json(['error' => $e->getMessage()], 401);
+        }
     }
 
     /**
@@ -32,9 +36,16 @@ class ConfigTarefasController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(ConfigTarefaRequest $request)
     {
-        //
+        $data = $request->all();
+
+        try {
+            $configTarefas = $this->configTarefas->create($data);
+            return response()->json($configTarefas, 200);
+        } catch (\Exception $e) {
+            return response()->json(['error' => $e->getMessage()], 401);
+        }
     }
 
     /**
@@ -45,18 +56,12 @@ class ConfigTarefasController extends Controller
      */
     public function show($id)
     {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
+        try {
+            $configTarefas = $this->configTarefas->findOrFail($id);
+            return response()->json(['data' => $configTarefas], 200);
+        } catch (\Exception $e) {
+            return response()->json(['error' => $e->getMessage()], 401);
+        }
     }
 
     /**
@@ -66,9 +71,17 @@ class ConfigTarefasController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(ConfigTarefaRequest $request, $id)
     {
-        //
+        $data = $request->all();
+
+        try {
+            $configTarefas = $this->configTarefas->findOrFail($id);
+            $configTarefas->update($data);
+            return response()->json($configTarefas, 200);
+        } catch (\Exception $e) {
+            return response()->json(['error' => $e->getMessage()], 401);
+        }
     }
 
     /**
@@ -79,6 +92,13 @@ class ConfigTarefasController extends Controller
      */
     public function destroy($id)
     {
-        //
+        try {
+
+            $configTarefas = $this->configTarefas->findOrFail($id);
+            $configTarefas->delete();
+            return response()->json($configTarefas, 200);
+        } catch (\Exception $e) {
+            return response()->json(['error' => $e->getMessage()], 401);
+        }
     }
 }

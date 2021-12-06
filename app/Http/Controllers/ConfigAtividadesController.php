@@ -3,9 +3,19 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\ConfigAtividades;
+use App\Http\Controllers\Controller;
+use App\Http\Requests\ConfigAtividadeRequest;
 
 class ConfigAtividadesController extends Controller
 {
+    private $configAtividades;
+
+    public function __construct(ConfigAtividades $configAtividades)
+    {
+        $this->configAtividades = $configAtividades;
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -13,17 +23,12 @@ class ConfigAtividadesController extends Controller
      */
     public function index()
     {
-        //
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
+        try {
+            $configAtividades = $this->configAtividades->get();
+            return response()->json($configAtividades, 200);
+        } catch (\Exception $e) {
+            return response()->json(['error' => $e->getMessage()], 401);
+        }
     }
 
     /**
@@ -32,9 +37,16 @@ class ConfigAtividadesController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(ConfigAtividadeRequest $request)
     {
-        //
+        $data = $request->all();
+
+        try {
+            $configAtividades = $this->configAtividades->create($data);
+            return response()->json($configAtividades, 200);
+        } catch (\Exception $e) {
+            return response()->json(['error' => $e->getMessage()], 401);
+        }
     }
 
     /**
@@ -45,18 +57,12 @@ class ConfigAtividadesController extends Controller
      */
     public function show($id)
     {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
+        try {
+            $configAtividades = $this->configAtividades->findOrFail($id);
+            return response()->json(['data' => $configAtividades], 200);
+        } catch (\Exception $e) {
+            return response()->json(['error' => $e->getMessage()], 401);
+        }
     }
 
     /**
@@ -66,9 +72,17 @@ class ConfigAtividadesController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(ConfigAtividadeRequest $request, $id)
     {
-        //
+        $data = $request->all();
+
+        try {
+            $configAtividades = $this->configAtividades->findOrFail($id);
+            $configAtividades->update($data);
+            return response()->json($configAtividades, 200);
+        } catch (\Exception $e) {
+            return response()->json(['error' => $e->getMessage()], 401);
+        }
     }
 
     /**
@@ -79,6 +93,13 @@ class ConfigAtividadesController extends Controller
      */
     public function destroy($id)
     {
-        //
+        try {
+
+            $configAtividades = $this->configAtividades->findOrFail($id);
+            $configAtividades->delete();
+            return response()->json($configAtividades, 200);
+        } catch (\Exception $e) {
+            return response()->json(['error' => $e->getMessage()], 401);
+        }
     }
 }

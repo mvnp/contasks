@@ -13,7 +13,7 @@ class SetoresController extends Controller
      */
     public function index()
     {
-        //
+
     }
 
     /**

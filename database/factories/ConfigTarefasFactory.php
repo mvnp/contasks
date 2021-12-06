@@ -23,8 +23,9 @@ class ConfigTarefasFactory extends Factory
     public function definition()
     {
         return [
+            'titulo' => $this->faker->jobTitle(),
             'descricao' => $this->faker->paragraph(3, false),
-            'atividade_id' => ConfigAtividades::factory()
+            'atividade_id' => rand(1, 300)
         ];
     }
 }

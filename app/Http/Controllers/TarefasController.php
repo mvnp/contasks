@@ -2,10 +2,21 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Tarefas;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+use App\Http\Requests\TarefaRequest;
+
 
 class TarefasController extends Controller
 {
+    private $tarefas;
+
+    public function __construct(Tarefas $tarefas)
+    {
+        $this->tarefas = $tarefas;
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -13,17 +24,12 @@ class TarefasController extends Controller
      */
     public function index()
     {
-        //
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
+        try {
+            $tarefas = Tarefas::with('atividades', 'configTarefas')->get();
+            return response()->json($tarefas, 200);
+        } catch (\Exception $e) {
+            return response()->json(['error' => $e->getMessage()], 401);
+        }
     }
 
     /**
@@ -32,9 +38,16 @@ class TarefasController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(TarefaRequest $request)
     {
-        //
+        $data = $request->all();
+
+        try {
+            $tarefa = $this->tarefas->create($data);
+            return response()->json($tarefa, 200);
+        } catch (\Exception $e) {
+            return response()->json(['error' => $e->getMessage()], 401);
+        }
     }
 
     /**
@@ -45,18 +58,12 @@ class TarefasController extends Controller
      */
     public function show($id)
     {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
+        try {
+            $tarefa = $this->tarefas->findOrFail($id);
+            return response()->json(['data' => $tarefa], 200);
+        } catch (\Exception $e) {
+            return response()->json(['error' => $e->getMessage()], 401);
+        }
     }
 
     /**
@@ -66,9 +73,17 @@ class TarefasController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(TarefaRequest $request, $id)
     {
-        //
+        $data = $request->all();
+
+        try {
+            $tarefa = $this->tarefas->findOrFail($id);
+            $tarefa->update($data);
+            return response()->json($tarefa, 200);
+        } catch (\Exception $e) {
+            return response()->json(['error' => $e->getMessage()], 401);
+        }
     }
 
     /**
@@ -79,6 +94,13 @@ class TarefasController extends Controller
      */
     public function destroy($id)
     {
-        //
+        try {
+
+            $tarefa = $this->tarefas->findOrFail($id);
+            $tarefa->delete();
+            return response()->json($tarefa, 200);
+        } catch (\Exception $e) {
+            return response()->json(['error' => $e->getMessage()], 401);
+        }
     }
 }

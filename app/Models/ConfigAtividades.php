@@ -8,4 +8,12 @@ use Illuminate\Database\Eloquent\Model;
 class ConfigAtividades extends Model
 {
     use HasFactory;
+
+    protected $table = 'config_atividades';
+    protected $fillable = ['titulo', 'descricao'];
+
+    public function atividades()
+    {
+        return $this->hasMany(Atividades::class);
+    }
 }

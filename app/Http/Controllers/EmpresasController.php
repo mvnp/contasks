@@ -2,10 +2,19 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
+use App\Models\Empresas;
+use App\Http\Controllers\Controller;
+use App\Http\Requests\EmpresaRequest;
 
 class EmpresasController extends Controller
 {
+    private $empresas;
+
+    public function __construct(Empresas $empresas)
+    {
+        $this->empresas = $empresas;
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -13,17 +22,12 @@ class EmpresasController extends Controller
      */
     public function index()
     {
-        //
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
+        try {
+            $empresas = $this->empresas->get();
+            return response()->json($empresas, 200);
+        } catch (\Exception $e) {
+            return response()->json(['error' => $e->getMessage()], 401);
+        }
     }
 
     /**
@@ -32,9 +36,16 @@ class EmpresasController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(EmpresaRequest $request)
     {
-        //
+        $data = $request->all();
+
+        try {
+            $empresa = $this->empresas->create($data);
+            return response()->json($empresa, 200);
+        } catch (\Exception $e) {
+            return response()->json(['error' => $e->getMessage()], 401);
+        }
     }
 
     /**
@@ -45,30 +56,25 @@ class EmpresasController extends Controller
      */
     public function show($id)
     {
-        //
+        try {
+            $empresa = $this->empresas->findOrFail($id);
+            return response()->json(['data' => $empresa], 200);
+        } catch (\Exception $e) {
+            return response()->json(['error' => $e->getMessage()], 401);
+        }
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
+    public function update(EmpresaRequest $request, $id)
     {
-        //
-    }
+        $data = $request->all();
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
+        try {
+            $empresa = $this->empresas->findOrFail($id);
+            $empresa->update($data);
+            return response()->json($empresa, 200);
+        } catch (\Exception $e) {
+            return response()->json(['error' => $e->getMessage()], 401);
+        }
     }
 
     /**
@@ -79,6 +85,13 @@ class EmpresasController extends Controller
      */
     public function destroy($id)
     {
-        //
+        try {
+
+            $empresa = $this->empresas->findOrFail($id);
+            $empresa->delete();
+            return response()->json($empresa, 200);
+        } catch (\Exception $e) {
+            return response()->json(['error' => $e->getMessage()], 401);
+        }
     }
 }

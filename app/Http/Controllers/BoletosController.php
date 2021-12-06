@@ -2,10 +2,19 @@
 
 namespace App\Http\Controllers;
 
+use App\Services\BoletosService;
+use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
 class BoletosController extends Controller
 {
+    protected $boletosService;
+
+    public function __construct(BoletosService $boletosService)
+    {
+        $this->boletosService = $boletosService;
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -13,17 +22,11 @@ class BoletosController extends Controller
      */
     public function index()
     {
-        //
-    }
+        // $boletos = $this->boletosService->getAllData();
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
+        // return response()->json([
+        //     'data' => $boletos
+        // ]);
     }
 
     /**
@@ -35,6 +38,15 @@ class BoletosController extends Controller
     public function store(Request $request)
     {
         //
+
+        $boleto = $this->boletosService->gerarBoleto($request);
+
+        try {
+            $boleto = $this->boletosService->gerarBoleto($request);
+            return response()->json($boleto, 200);
+        } catch (\Exception $e) {
+            return response()->json(['error' => $e->getMessage()], 401);
+        }
     }
 
     /**
@@ -45,27 +57,42 @@ class BoletosController extends Controller
      */
     public function show($id)
     {
-        //
+        $boletosService = new BoletosService;
+        $geradorBoleto = $boletosService->gerarBoleto($id);
+
+        var_dump($geradorBoleto);
+
+        return response()->json([
+            'data' => $geradorBoleto
+        ], 200);
+
+
+
+        // try {
+        //     $geradorBoleto = $boletosService->gerarBoleto($id);
+        //     return response()->json([
+        //         "message" => "Boleto foi gerado com sucesso.",
+        //         'data' => $geradorBoleto
+        //     ], 200);
+        // } catch (\Exception $e) {
+        //     return response()->json(['error' => "Boleto não foi gerado."], 401);
+        // }
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
+    public function savePdf($id)
     {
-        //
+        $boletosService = new BoletosService;
+        $pdfBoleto = $boletosService->getPDFBoleto($id);
+
+        return response()->json([
+            'data' => $pdfBoleto
+        ], 200);
+
+        // return response()->json([
+        //     "message" => $debito
+        // ], 200);
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function update(Request $request, $id)
     {
         //
