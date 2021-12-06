@@ -36,7 +36,7 @@ class BoletosRepository
 
         $model->empresa_id = 251;
         $model->financeiro_id = 1;
-        $model->seu_numero = $boleto($this->seuNumero);
+        $model->seu_numero = $boleto['seuNumero'];
         $model->codigo_barras = $boleto['codigoBarras'];
         $model->linha_digitavel = $boleto['linhaDigitavel'];
         $model->boleto_arquivo = null;
