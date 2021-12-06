@@ -62,11 +62,11 @@ class BoletosController extends Controller
 
         try {
             match ($geradorBoleto) {
-                true => response()->json(['error' => 'Boleto já existe.']),
                 $geradorBoleto->id => response()->json([
                     "message" => 'Boleto foi criado com sucesso.',
                     'data' => $geradorBoleto
-                ], 200)
+                ], 200),
+                true => response()->json(['error' => 'Boleto já existe.'])
             };
         } catch (\UnhandledMatchError $e) {
             return response()->json(['error' => "Boleto não foi gerado."], 401);
