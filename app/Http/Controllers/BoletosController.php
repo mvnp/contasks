@@ -77,7 +77,7 @@ class BoletosController extends Controller
         //     default => throw new \Exception('Não foi possível criar boleto'),
         // };
 
-        return $result;
+        //return $result;
 
         // try {
         //     $geradorBoleto = $boletosService->gerarBoleto($id);
