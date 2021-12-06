@@ -63,7 +63,7 @@ class BoletosController extends Controller
         try {
             match ($geradorBoleto) {
                 true => response()->json(['error' => 'Boleto já existe.'], 422),
-                $geradorBoleto->$id => response()->json([
+                $geradorBoleto => response()->json([
                     "message" => 'Boleto foi criado com sucesso.',
                     'data' => $geradorBoleto
                 ], 200)
