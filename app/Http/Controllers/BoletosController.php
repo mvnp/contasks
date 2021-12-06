@@ -64,7 +64,7 @@ class BoletosController extends Controller
             case true:
                 return response()->json(['error' => 'Boleto já existe.']);
                 break;
-            case $geradorBoleto->id:
+            case ($geradorBoleto->id):
                 return response()->json([
                     "message" => 'Boleto foi criado com sucesso.',
                     'data' => $geradorBoleto
