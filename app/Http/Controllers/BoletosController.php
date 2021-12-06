@@ -60,8 +60,6 @@ class BoletosController extends Controller
         $boletosService = new BoletosService;
         $geradorBoleto = $boletosService->gerarBoleto($id);
 
-        //dd($geradorBoleto);
-
         try {
             match ($geradorBoleto) {
                 true => response()->json(['error' => 'Boleto já existe.']),
