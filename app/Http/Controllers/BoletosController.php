@@ -60,16 +60,16 @@ class BoletosController extends Controller
         $boletosService = new BoletosService;
 
 
-        switch ($geradorBoleto = $boletosService->gerarBoleto($id)) {
-            case ('boleto_id'):
-                return response()->json(['error' => 'Boleto já existe.'], 422);
+        // switch ($geradorBoleto = $boletosService->gerarBoleto($id)) {
+        //     case ('boleto_id'):
+        //         return response()->json(['error' => 'Boleto já existe.'], 422);
 
-            case ($geradorBoleto):
-                return response()->json(['data' => 'Boleto foi criado com sucesso.'], 200);
+        //     case ($geradorBoleto):
+        //         return response()->json(['data' => 'Boleto foi criado com sucesso.'], 200);
 
-            default:
-                return response()->json(['error' => "Boleto não foi gerado."], 401);
-        }
+        //     default:
+        //         return response()->json(['error' => "Boleto não foi gerado."], 401);
+        // }
 
         // try {
         //     match ($geradorBoleto) {
@@ -93,15 +93,15 @@ class BoletosController extends Controller
 
         //return $result;
 
-        // try {
-        //     $geradorBoleto = $boletosService->gerarBoleto($id);
-        //     return response()->json([
-        //         "message" => "Boleto foi gerado com sucesso.",
-        //         'data' => $geradorBoleto
-        //     ], 200);
-        // } catch (\Exception $e) {
-        //     return response()->json(['error' => "Boleto não foi gerado."], 401);
-        // }
+        try {
+            $geradorBoleto = $boletosService->gerarBoleto($id);
+            return response()->json([
+                "message" => "Boleto foi gerado com sucesso.",
+                'data' => $geradorBoleto
+            ], 200);
+        } catch (\Exception $e) {
+            return response()->json(['error' => "Boleto não foi gerado."], 401);
+        }
     }
 
     public function savePdf($id)
