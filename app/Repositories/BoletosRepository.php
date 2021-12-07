@@ -31,21 +31,18 @@ class BoletosRepository
     public function save($boleto)
     {
         $model = new Boletos;
+        $model->empresa_id = 251;
+        $model->financeiro_receber_id = 1;
+        $model->seu_numero = $boleto->getSeuNumero();
+        $model->codigo_barras = $boleto->getCodigoBarras();
+        $model->linha_digitavel = $boleto->getLinhaDigitavel();
+        $model->boleto_arquivo = null;
+        $model->nosso_numero = $boleto->getNossoNumero();
+        $model->emissao = $boleto->getDataEmissao();
+        $model->vencimento = $boleto->getDataVencimento();
+        $model->pago = 0;
 
-        return dd($boleto);
-
-        // $model->empresa_id = 251;
-        // $model->financeiro_receber_id = 1;
-        // $model->seu_numero = $boleto->getSeuNumero();
-        // $model->codigo_barras = $boleto->getCodigoBarras();
-        // $model->linha_digitavel = $boleto->getLinhaDigitavel();
-        // $model->boleto_arquivo = null;
-        // $model->nosso_numero = $boleto->getNossoNumero();
-        // $model->emissao = $boleto->getDataEmissao();
-        // $model->vencimento = $boleto->getDataVencimento();
-        // $model->pago = 0;
-
-        // $model->save();
+        $model->save();
     }
 
     public function getBoleto($idBoleto)
