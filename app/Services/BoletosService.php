@@ -5,7 +5,7 @@ namespace App\Services;
 use App\Repositories\BoletosRepository;
 use ctodobom\APInterPHP\BancoInter;
 use ctodobom\APInterPHP\BancoInterException;
-use ctodobom\APInterPHP\Cobranca\Boleto;
+use ctodobom\APInterPHP\Cobranca\Boleto as BoletoInter;
 use ctodobom\APInterPHP\Cobranca\Desconto;
 use ctodobom\APInterPHP\Cobranca\Mensagem;
 use ctodobom\APInterPHP\Cobranca\Mora;
@@ -80,7 +80,7 @@ class BoletosService
 
     public function getBoleto($infoDebito)
     {
-        $boleto = new Boleto();
+        $boleto = new BoletoInter;
 
         $boleto->setCnpjCPFBeneficiario($this->cnpj);
         $boleto->setPagador($this->getPagador($infoDebito));
