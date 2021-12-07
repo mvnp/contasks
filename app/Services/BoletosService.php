@@ -105,10 +105,10 @@ class BoletosService
                 "codigoBarras" => "07794883700000036850001112018821400758447751",
                 "linhaDigitavel" => "07790001161201882140007584477512488370000003685",
                 "controller" => array(
-                    "apiBaseURL" => "https =>//apis.bancointer.com.br",
+                    "apiBaseURL" => "https://apis.bancointer.com.br",
                     "accountNumber" => "41629744",
-                    "certificateFile" => "C =>\Server\www\_contasks\bakend_contasks\certs\gustavo_inter_certiicado.crt",
-                    "keyFile" => "C =>\Server\www\_contasks\bakend_contasks\certs\gustavo_inter_certiicado.key",
+                    "certificateFile" => "C:\Server\www\_contasks\bakend_contasks\certs\gustavo_inter_certiicado.crt",
+                    "keyFile" => "C:\Server\www\_contasks\bakend_contasks\certs\gustavo_inter_certiicado.key",
                     "keyPassword" => null,
                     "curl" => null,
                 )
