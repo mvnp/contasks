@@ -2,8 +2,6 @@
 
 namespace App\Services;
 
-use App\Models\Boletos;
-use App\Models\FinanceiroReceber;
 use App\Repositories\BoletosRepository;
 use ctodobom\APInterPHP\BancoInter;
 use ctodobom\APInterPHP\BancoInterException;
@@ -20,9 +18,11 @@ class BoletosService
     private $conta = "115830308";
     private $cnpj = "33240999000103";
     private $seuNumero = "0209463320";
-    private $certificado = '/home/axibusiness.com.br/certs/certificado.crt'; //caminho/do/certificado.pem
-    private $chavePrivada = '/home/axibusiness.com.br/certs/certificado.key'; //caminho/da/chaveprivada.key
-    private $chavePrivadaSenha = ""; // $this->connectBanco->setKeyPassword("senhadachave");
+    // private $certificado = '/home/axibusiness.com.br/certs/certificado.crt'; //caminho/do/certificado.pem
+    // private $chavePrivada = '/home/axibusiness.com.br/certs/certificado.key'; //caminho/da/chaveprivada.key
+    private $certificado = 'C:\Server\www\_contasks\bakend_contasks\certs\certificado.crt'; //caminho/do/certificado.pem
+    private $chavePrivada = 'C:\Server\www\_contasks\bakend_contasks\certs\certificado.key'; //caminho/da/chaveprivada.key
+    // private $chavePrivadaSenha = ""; // $this->connectBanco->setKeyPassword("senhadachave");
 
     public function __construct()
     {
@@ -38,82 +38,82 @@ class BoletosService
 
         try {
             // MOCK
-            // $this->connectBanco->createBoleto($boleto);
-            $boleto = array( // $mock
-                "dataEmissao" => "2021-12-06",
-                "seuNumero" => "0209463320",
-                "dataLimite" => "SESSENTA",
-                "dataVencimento" => "2021-12-16",
-                "valorNominal" => 36.85,
-                "valorAbatimento" => 0.0,
-                "cnpjCPFBeneficiario" => "33240999000103",
-                "numDiasAgenda" => "SESSENTA",
-                "pagador" => array(
-                    "cnpjCpf" => "10772017000110",
-                    "nome" => "AXITECH NEGOCIOS DIGITAIS",
-                    "cep" => "88132212",
-                    "bairro" => "Pagani",
-                    "endereco" => "Rua Milão",
-                    "numero" => "95",
-                    "complemento" => "Sala 601",
-                    "cidade" => "Palhoça",
-                    "uf" => "SC",
-                    "tipoPessoa" => "JURIDICA",
-                    "email" => "contato@axitech.com.br",
-                    "ddd" => "48",
-                    "telefone" => "991893313",
-                ),
-                "mensagem" => array(
-                    "linha1" => "Linha 1",
-                    "linha2" => "Linha 2",
-                    "linha3" => "Linha 3",
-                    "linha4" => "Linha 4",
-                    "linha5" => "Linha 5",
-                ),
-                "desconto1" => array(
-                    "codigoDesconto" => "NAOTEMDESCONTO",
-                    "taxa" => 0,
-                    "valor" => 0,
-                    "data" => "",
-                ),
-                "desconto2" => array(
-                    "codigoDesconto" => "NAOTEMDESCONTO",
-                    "taxa" => 0,
-                    "valor" => 0,
-                    "data" => "",
-                ),
-                "desconto3" => array(
-                    "codigoDesconto" => "NAOTEMDESCONTO",
-                    "taxa" => 0,
-                    "valor" => 0,
-                    "data" => "",
-                ),
-                "multa" => array(
-                    "codigoMulta" => "NAOTEMMULTA",
-                    "valor" => 0,
-                    "taxa" => 0,
-                    "data" => "",
-                ),
-                "mora" => array(
-                    "codigoMora" => "ISENTO",
-                    "valor" => 0,
-                    "taxa" => 0,
-                    "data" => "",
-                ),
-                "nossoNumero" => "00758378238",
-                "codigoBarras" => "07798883600000036850001112043103300758378238",
-                "linhaDigitavel" => "07790001161204310330307583782383888360000003685",
-                "controller" => array(
-                    "apiBaseURL" => "https://apis.bancointer.com.br",
-                    "accountNumber" => "115830308",
-                    "certificateFile" => "/home/axibusiness.com.br/certs/certificado.crt",
-                    "keyFile" => "/home/axibusiness.com.br/certs/certificado.key",
-                    "keyPassword" => null,
-                    "curl" => null
-                )
-            );
-            $this->registraBoleto($boleto);
-            return $boleto;
+            $boleto = $this->connectBanco->createBoleto($boleto);
+            return dd($boleto);
+            // $boleto = array( // $mock
+            //     "dataEmissao" => "2021-12-06",
+            //     "seuNumero" => "0209463320",
+            //     "dataLimite" => "SESSENTA",
+            //     "dataVencimento" => "2021-12-16",
+            //     "valorNominal" => 36.85,
+            //     "valorAbatimento" => 0.0,
+            //     "cnpjCPFBeneficiario" => "33240999000103",
+            //     "numDiasAgenda" => "SESSENTA",
+            //     "pagador" => array(
+            //         "cnpjCpf" => "10772017000110",
+            //         "nome" => "AXITECH NEGOCIOS DIGITAIS",
+            //         "cep" => "88132212",
+            //         "bairro" => "Pagani",
+            //         "endereco" => "Rua Milão",
+            //         "numero" => "95",
+            //         "complemento" => "Sala 601",
+            //         "cidade" => "Palhoça",
+            //         "uf" => "SC",
+            //         "tipoPessoa" => "JURIDICA",
+            //         "email" => "contato@axitech.com.br",
+            //         "ddd" => "48",
+            //         "telefone" => "991893313",
+            //     ),
+            //     "mensagem" => array(
+            //         "linha1" => "Linha 1",
+            //         "linha2" => "Linha 2",
+            //         "linha3" => "Linha 3",
+            //         "linha4" => "Linha 4",
+            //         "linha5" => "Linha 5",
+            //     ),
+            //     "desconto1" => array(
+            //         "codigoDesconto" => "NAOTEMDESCONTO",
+            //         "taxa" => 0,
+            //         "valor" => 0,
+            //         "data" => "",
+            //     ),
+            //     "desconto2" => array(
+            //         "codigoDesconto" => "NAOTEMDESCONTO",
+            //         "taxa" => 0,
+            //         "valor" => 0,
+            //         "data" => "",
+            //     ),
+            //     "desconto3" => array(
+            //         "codigoDesconto" => "NAOTEMDESCONTO",
+            //         "taxa" => 0,
+            //         "valor" => 0,
+            //         "data" => "",
+            //     ),
+            //     "multa" => array(
+            //         "codigoMulta" => "NAOTEMMULTA",
+            //         "valor" => 0,
+            //         "taxa" => 0,
+            //         "data" => "",
+            //     ),
+            //     "mora" => array(
+            //         "codigoMora" => "ISENTO",
+            //         "valor" => 0,
+            //         "taxa" => 0,
+            //         "data" => "",
+            //     ),
+            //     "nossoNumero" => "00758378238",
+            //     "codigoBarras" => "07798883600000036850001112043103300758378238",
+            //     "linhaDigitavel" => "07790001161204310330307583782383888360000003685",
+            //     "controller" => array(
+            //         "apiBaseURL" => "https://apis.bancointer.com.br",
+            //         "accountNumber" => "115830308",
+            //         "certificateFile" => "/home/axibusiness.com.br/certs/certificado.crt",
+            //         "keyFile" => "/home/axibusiness.com.br/certs/certificado.key",
+            //         "keyPassword" => null,
+            //         "curl" => null
+            //     )
+            // );
+            // return $this->registraBoleto($boleto);
         } catch (BancoInterException $e) {
             return $e->getMessage();
         }
@@ -124,10 +124,11 @@ class BoletosService
     // }
 
 
-    private function registraBoleto($boleto)
+    public function registraBoleto($boleto)
     {
-        $boletosRepository = new BoletosRepository;
-        return $boletosRepository->save($boleto);
+        return "hello world";
+        // $boletosRepository = new BoletosRepository;
+        // return $boletosRepository->save($boleto);
     }
 
     public function getPagador($ArrayInfoDebito)

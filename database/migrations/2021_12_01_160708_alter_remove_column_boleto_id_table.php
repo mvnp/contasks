@@ -15,8 +15,8 @@ class AlterRemoveColumnBoletoIdTable extends Migration
     {
         Schema::table('boletos', function(Blueprint $table)
         {
-            $table->unsignedBigInteger('financeiro_id')->after('empresa_id');
-            $table->foreign('financeiro_id')->references('id')->on('financeiro_receber');
+            $table->unsignedBigInteger('financeiro_receber_id')->after('empresa_id');
+            $table->foreign('financeiro_receber_id')->references('id')->on('financeiro_receber');
         });
     }
 
