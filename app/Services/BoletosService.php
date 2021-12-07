@@ -36,7 +36,7 @@ class BoletosService
         $ArrayInfoDebito = $boletosRepository->getAll($idDebito);
         $boleto = $this->getBoleto($ArrayInfoDebito);
 
-        dd($boleto);
+        return dd($boleto);
 
         try {
             // MOCK
