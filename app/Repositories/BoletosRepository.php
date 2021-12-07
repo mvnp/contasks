@@ -73,7 +73,10 @@ class BoletosRepository
         if (!$saved) {
             App::abort(500, ['error', 500]);
         } else {
-            return 'Arquivo PDF salvo com sucesso.';
+            return [
+                'mensagem' => 'Arquivo PDF salvo com sucesso.',
+                'filename' => $filename
+            ];
         }
     }
 }
