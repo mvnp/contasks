@@ -37,7 +37,8 @@ class BoletosService
         $responseBoleto = $this->getBoleto($ArrayInfoDebito);
 
         try {
-            $this->connectBanco->createBoleto($responseBoleto);
+            // Usar mock porque isso gera requisições e acaba com os boletos!
+            // $this->connectBanco->createBoleto($responseBoleto);
             return $this->registraBoleto($responseBoleto);
         } catch (BancoInterException $e) {
             return $e->getMessage();
