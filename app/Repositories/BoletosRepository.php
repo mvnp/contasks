@@ -28,18 +28,30 @@ class BoletosRepository
         //$financeiroReceber = FinanceiroReceber::with('empresas')->findOrFail($id);
     }
 
-    public function save($boleto)
+    public function save($boleto, $debito, $empresa)
     {
         $model = new Boletos;
-        $model->empresa_id = 251;
-        $model->financeiro_receber_id = 1;
-        $model->seu_numero = $boleto->getSeuNumero();
-        $model->codigo_barras = $boleto->getCodigoBarras();
-        $model->linha_digitavel = $boleto->getLinhaDigitavel();
+
+        // $model->empresa_id = $empresa;
+        // $model->financeiro_receber_id = $debito;
+        // $model->seu_numero = $boleto->getSeuNumero();
+        // $model->codigo_barras = $boleto->getCodigoBarras();
+        // $model->linha_digitavel = $boleto->getLinhaDigitavel();
+        // $model->boleto_arquivo = null;
+        // $model->nosso_numero = $boleto->getNossoNumero();
+        // $model->emissao = $boleto->getDataEmissao();
+        // $model->vencimento = $boleto->getDataVencimento();
+        // $model->pago = 0;
+
+        $model->empresa_id = $empresa;
+        $model->financeiro_receber_id = $debito;
+        $model->seu_numero = $boleto['seuNumero'];
+        $model->codigo_barras = $boleto['codigoBarras'];
+        $model->linha_digitavel = $boleto['linhaDigitavel'];
         $model->boleto_arquivo = null;
-        $model->nosso_numero = $boleto->getNossoNumero();
-        $model->emissao = $boleto->getDataEmissao();
-        $model->vencimento = $boleto->getDataVencimento();
+        $model->nosso_numero = $boleto['nossoNumero'];
+        $model->emissao = $boleto['dataEmissao'];
+        $model->vencimento = $boleto['dataVencimento'];
         $model->pago = 0;
 
         $model->save();

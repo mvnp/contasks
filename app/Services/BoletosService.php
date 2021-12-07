@@ -15,13 +15,13 @@ use ctodobom\APInterPHP\Cobranca\Pagador;
 class BoletosService
 {
     private $connectBanco;
-    private $conta = "115830308";
-    private $cnpj = "33240999000103";
+    private $conta = "41629744";
+    private $cnpj = "33118920000168";
     private $seuNumero = "0209463320";
-    private $certificado = '/home/axibusiness.com.br/certs/certificado.crt'; //caminho/do/certificado.pem
-    private $chavePrivada = '/home/axibusiness.com.br/certs/certificado.key'; //caminho/da/chaveprivada.key
-    // private $certificado = 'C:\Server\www\_contasks\bakend_contasks\certs\certificado.crt'; //caminho/do/certificado.pem
-    // private $chavePrivada = 'C:\Server\www\_contasks\bakend_contasks\certs\certificado.key'; //caminho/da/chaveprivada.key
+    private $certificado = '/home/axibusiness.com.br/certs/gustavo_inter_certiicado.crt'; //caminho/do/certificado.pem
+    private $chavePrivada = '/home/axibusiness.com.br/certs/gustavo_inter_certiicado.key'; //caminho/da/chaveprivada.key
+    // private $certificado = 'C:\Server\www\_contasks\bakend_contasks\certs\gustavo_inter_certiicado.crt'; //caminho/do/certificado.pem
+    // private $chavePrivada = 'C:\Server\www\_contasks\bakend_contasks\certs\gustavo_inter_certiicado.key'; //caminho/da/chaveprivada.key
     // private $chavePrivadaSenha = ""; // $this->connectBanco->setKeyPassword("senhadachave");
 
     public function __construct()
@@ -37,18 +37,92 @@ class BoletosService
         $responseBoleto = $this->getBoleto($ArrayInfoDebito);
 
         try {
+            // Erro HTTP 400 - Sem boleto
             // Usar mock porque isso gera requisições e acaba com os boletos!
             // $this->connectBanco->createBoleto($responseBoleto);
-            return $this->registraBoleto($responseBoleto);
+            $responseBoleto = array(
+                "dataEmissao" => "2021-12-07",
+                "seuNumero" => "0209463320",
+                "dataLimite" => "SESSENTA",
+                "dataVencimento" => "2021-12-17",
+                "valorNominal" => 36.85,
+                "valorAbatimento" => 0.0,
+                "cnpjCPFBeneficiario" => "33118920000168",
+                "numDiasAgenda" => "SESSENTA",
+                "pagador" => array(
+                    "cnpjCpf" => "10772017000110",
+                    "nome" => "AXITECH NEGOCIOS DIGITAIS",
+                    "cep" => "88132212",
+                    "bairro" => "Pagani",
+                    "endereco" => "Rua Milão",
+                    "numero" => "95",
+                    "complemento" => "Sala 601",
+                    "cidade" => "Palhoça",
+                    "uf" => "SC",
+                    "tipoPessoa" => "JURIDICA",
+                    "email" => "contato@axitech.com.br",
+                    "ddd" => "48",
+                    "telefone" => "991893313",
+                ),
+                "mensagem" => array(
+                    "linha1" => "Linha 1",
+                    "linha2" => "Linha 2",
+                    "linha3" => "Linha 3",
+                    "linha4" => "Linha 4",
+                    "linha5" => "Linha 5",
+                ),
+                "desconto1" => array(
+                    "codigoDesconto" => "NAOTEMDESCONTO",
+                    "taxa" => 0,
+                    "valor" => 0,
+                    "data" => "",
+                ),
+                "desconto2" => array(
+                    "codigoDesconto" => "NAOTEMDESCONTO",
+                    "taxa" => 0,
+                    "valor" => 0,
+                    "data" => "",
+                ),
+                "desconto3" => array(
+                    "codigoDesconto" => "NAOTEMDESCONTO",
+                    "taxa" => 0,
+                    "valor" => 0,
+                    "data" => "",
+                ),
+                "multa" => array(
+                    "codigoMulta" => "NAOTEMMULTA",
+                    "valor" => 0,
+                    "taxa" => 0,
+                    "data" => "",
+                ),
+                "mora" => array(
+                    "codigoMora" => "ISENTO",
+                    "valor" => 0.0,
+                    "taxa" => 0.0,
+                    "data" => "",
+                ),
+                "nossoNumero" => "00758447751",
+                "codigoBarras" => "07794883700000036850001112018821400758447751",
+                "linhaDigitavel" => "07790001161201882140007584477512488370000003685",
+                "controller" => array(
+                    "apiBaseURL" => "https =>//apis.bancointer.com.br",
+                    "accountNumber" => "41629744",
+                    "certificateFile" => "C =>\Server\www\_contasks\bakend_contasks\certs\gustavo_inter_certiicado.crt",
+                    "keyFile" => "C =>\Server\www\_contasks\bakend_contasks\certs\gustavo_inter_certiicado.key",
+                    "keyPassword" => null,
+                    "curl" => null,
+                )
+            );
+            return $this->registraBoleto($responseBoleto, $idDebito, $ArrayInfoDebito['empresa_id']);
         } catch (BancoInterException $e) {
             return $e->getMessage();
         }
     }
 
-    public function registraBoleto($boleto)
+    public function registraBoleto($boleto, $debito, $empresa)
     {
         $boletosRepository = new BoletosRepository;
-        return $boletosRepository->save($boleto);
+        return $boletosRepository->save($boleto, $debito, $empresa);
     }
 
     public function getPagador($ArrayInfoDebito)
