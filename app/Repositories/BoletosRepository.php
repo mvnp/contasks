@@ -63,7 +63,6 @@ class BoletosRepository
         return $model->findOrFail($idBoleto);
     }
 
-
     public function updatePdfBoleto($idBoleto, $filename)
     {
         $model = Boletos::find($idBoleto);
