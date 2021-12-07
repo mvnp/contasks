@@ -38,16 +38,11 @@ class BoletosService
 
         try {
             $this->connectBanco->createBoleto($responseBoleto);
-            // return $this->registraBoleto($responseBoleto);
+            return $this->registraBoleto($responseBoleto);
         } catch (BancoInterException $e) {
             return $e->getMessage();
         }
     }
-
-    // if (FinanceiroReceber::with('boleto')->find($idDebito)->boleto) {
-    //     return true;
-    // }
-
 
     public function registraBoleto($boleto)
     {
