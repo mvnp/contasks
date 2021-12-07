@@ -60,10 +60,6 @@ class BoletosController extends Controller
         $boletosService = new BoletosService;
         $geradorBoleto = $boletosService->gerarBoleto($id);
 
-        dd($geradorBoleto);
-
-        return;
-
         return response()->json([
             'data' => $geradorBoleto
         ], 200);
