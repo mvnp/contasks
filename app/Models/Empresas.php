@@ -10,7 +10,7 @@ class Empresas extends Model
     use HasFactory;
 
     protected $table = 'empresas';
-    protected $fillable = ['user_id', 'fantasia', 'razao', 'cnpj', 'atividade', 'rua', 'numero', 'complemento', 'bairro', 'cep', 'cidade', 'estado', 'telefonePrincipal', 'telefoneSecundario', 'inscricaoMunicipal', 'inscricaoEstadual', 'cnae'];
+    protected $fillable = ['user_id', 'fantasia', 'razao', 'cnpj', 'email', 'atividade', 'rua', 'numero', 'complemento', 'bairro', 'cep', 'cidade', 'estado', 'ddd', 'telefonePrincipal', 'telefoneSecundario', 'inscricaoMunicipal', 'inscricaoEstadual', 'cnae'];
 
     public function user()
     {

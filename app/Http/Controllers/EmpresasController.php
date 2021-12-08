@@ -44,7 +44,7 @@ class EmpresasController extends Controller
             $empresa = $this->empresas->create($data);
             return response()->json($empresa, 200);
         } catch (\Exception $e) {
-            return response()->json(['error' => $e->getMessage()], 401);
+            return response()->json(['error' => $e->getMessage()], 422);
         }
     }
 
