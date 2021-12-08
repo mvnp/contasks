@@ -45,7 +45,7 @@ class BoletosController extends Controller
             $boleto = $this->boletosService->gerarBoleto($request);
             return response()->json($boleto, 200);
         } catch (\Exception $e) {
-            return response()->json(['error' => $e->getMessage()], 401);
+            return response()->json(['error' => $e->getMessage()]);
         }
     }
 
@@ -73,7 +73,7 @@ class BoletosController extends Controller
         //         'data' => $geradorBoleto
         //     ], 200);
         // } catch (\Exception $e) {
-        //     return response()->json(['error' => "Boleto não foi gerado."], 401);
+        //     return response()->json(['error' => "Boleto não foi gerado."]);
         // }
     }
 

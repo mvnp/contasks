@@ -26,7 +26,7 @@ class FinaceiroReceberController extends Controller
             $financeiroReceber = FinanceiroReceber::with('empresas')->get();
             return response()->json($financeiroReceber, 200);
         } catch (\Exception $e) {
-            return response()->json(['error' => $e->getMessage()], 401);
+            return response()->json(['error' => $e->getMessage()]);
         }
     }
 
@@ -44,7 +44,7 @@ class FinaceiroReceberController extends Controller
             $financeiroReceber = $this->financeiroReceber->create($data);
             return response()->json($financeiroReceber, 200);
         } catch (\Exception $e) {
-            return response()->json(['error' => $e->getMessage()], 401);
+            return response()->json(['error' => $e->getMessage()]);
         }
     }
 
@@ -61,7 +61,7 @@ class FinaceiroReceberController extends Controller
             //$financeiroReceber = $this->financeiroReceber->findOrFail($id);
             return response()->json(['data' => $financeiroReceber], 200);
         } catch (\Exception $e) {
-            return response()->json(['error' => $e->getMessage()], 401);
+            return response()->json(['error' => $e->getMessage()]);
         }
     }
 
@@ -81,7 +81,7 @@ class FinaceiroReceberController extends Controller
             $financeiroReceber->update($data);
             return response()->json($financeiroReceber, 200);
         } catch (\Exception $e) {
-            return response()->json(['error' => $e->getMessage()], 401);
+            return response()->json(['error' => $e->getMessage()]);
         }
     }
 
@@ -99,7 +99,7 @@ class FinaceiroReceberController extends Controller
             $financeiroReceber->delete();
             return response()->json($financeiroReceber, 200);
         } catch (\Exception $e) {
-            return response()->json(['error' => $e->getMessage()], 401);
+            return response()->json(['error' => $e->getMessage()]);
         }
     }
 }

@@ -27,7 +27,7 @@ class ConfigAtividadesController extends Controller
             $configAtividades = $this->configAtividades->get();
             return response()->json($configAtividades, 200);
         } catch (\Exception $e) {
-            return response()->json(['error' => $e->getMessage()], 401);
+            return response()->json(['error' => $e->getMessage()]);
         }
     }
 
@@ -45,7 +45,7 @@ class ConfigAtividadesController extends Controller
             $configAtividades = $this->configAtividades->create($data);
             return response()->json($configAtividades, 200);
         } catch (\Exception $e) {
-            return response()->json(['error' => $e->getMessage()], 401);
+            return response()->json(['error' => $e->getMessage()]);
         }
     }
 
@@ -61,7 +61,7 @@ class ConfigAtividadesController extends Controller
             $configAtividades = $this->configAtividades->findOrFail($id);
             return response()->json(['data' => $configAtividades], 200);
         } catch (\Exception $e) {
-            return response()->json(['error' => $e->getMessage()], 401);
+            return response()->json(['error' => $e->getMessage()]);
         }
     }
 
@@ -81,7 +81,7 @@ class ConfigAtividadesController extends Controller
             $configAtividades->update($data);
             return response()->json($configAtividades, 200);
         } catch (\Exception $e) {
-            return response()->json(['error' => $e->getMessage()], 401);
+            return response()->json(['error' => $e->getMessage()]);
         }
     }
 
@@ -99,7 +99,7 @@ class ConfigAtividadesController extends Controller
             $configAtividades->delete();
             return response()->json($configAtividades, 200);
         } catch (\Exception $e) {
-            return response()->json(['error' => $e->getMessage()], 401);
+            return response()->json(['error' => $e->getMessage()]);
         }
     }
 }

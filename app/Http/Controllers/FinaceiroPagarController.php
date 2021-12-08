@@ -26,7 +26,7 @@ class FinaceiroPagarController extends Controller
             $financeiroPagar = FinanceiroPagar::with('empresas')->get();
             return response()->json($financeiroPagar, 200);
         } catch (\Exception $e) {
-            return response()->json(['error' => $e->getMessage()], 401);
+            return response()->json(['error' => $e->getMessage()]);
         }
     }
 
@@ -44,7 +44,7 @@ class FinaceiroPagarController extends Controller
             $financeiroPagar = $this->financeiroPagar->create($data);
             return response()->json($financeiroPagar, 200);
         } catch (\Exception $e) {
-            return response()->json(['error' => $e->getMessage()], 401);
+            return response()->json(['error' => $e->getMessage()]);
         }
     }
 
@@ -60,7 +60,7 @@ class FinaceiroPagarController extends Controller
             $financeiroPagar = $this->financeiroPagar->findOrFail($id);
             return response()->json(['data' => $financeiroPagar], 200);
         } catch (\Exception $e) {
-            return response()->json(['error' => $e->getMessage()], 401);
+            return response()->json(['error' => $e->getMessage()]);
         }
     }
 
@@ -80,7 +80,7 @@ class FinaceiroPagarController extends Controller
             $financeiroPagar->update($data);
             return response()->json($financeiroPagar, 200);
         } catch (\Exception $e) {
-            return response()->json(['error' => $e->getMessage()], 401);
+            return response()->json(['error' => $e->getMessage()]);
         }
     }
 
@@ -98,7 +98,7 @@ class FinaceiroPagarController extends Controller
             $financeiroPagar->delete();
             return response()->json($financeiroPagar, 200);
         } catch (\Exception $e) {
-            return response()->json(['error' => $e->getMessage()], 401);
+            return response()->json(['error' => $e->getMessage()]);
         }
     }
 }

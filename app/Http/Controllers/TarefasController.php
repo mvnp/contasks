@@ -28,7 +28,7 @@ class TarefasController extends Controller
             $tarefas = Tarefas::with('atividades', 'configTarefas')->get();
             return response()->json($tarefas, 200);
         } catch (\Exception $e) {
-            return response()->json(['error' => $e->getMessage()], 401);
+            return response()->json(['error' => $e->getMessage()]);
         }
     }
 
@@ -46,7 +46,7 @@ class TarefasController extends Controller
             $tarefa = $this->tarefas->create($data);
             return response()->json($tarefa, 200);
         } catch (\Exception $e) {
-            return response()->json(['error' => $e->getMessage()], 401);
+            return response()->json(['error' => $e->getMessage()]);
         }
     }
 
@@ -62,7 +62,7 @@ class TarefasController extends Controller
             $tarefa = $this->tarefas->findOrFail($id);
             return response()->json(['data' => $tarefa], 200);
         } catch (\Exception $e) {
-            return response()->json(['error' => $e->getMessage()], 401);
+            return response()->json(['error' => $e->getMessage()]);
         }
     }
 
@@ -82,7 +82,7 @@ class TarefasController extends Controller
             $tarefa->update($data);
             return response()->json($tarefa, 200);
         } catch (\Exception $e) {
-            return response()->json(['error' => $e->getMessage()], 401);
+            return response()->json(['error' => $e->getMessage()]);
         }
     }
 
@@ -100,7 +100,7 @@ class TarefasController extends Controller
             $tarefa->delete();
             return response()->json($tarefa, 200);
         } catch (\Exception $e) {
-            return response()->json(['error' => $e->getMessage()], 401);
+            return response()->json(['error' => $e->getMessage()]);
         }
     }
 }

@@ -44,7 +44,8 @@ class EmpresasController extends Controller
             $empresa = $this->empresas->create($data);
             return response()->json($empresa, 200);
         } catch (\Exception $e) {
-            return response()->json(['error' => $e->getMessage()], 422);
+            return response()->json(['error' => $e->getMessage()]);
+            // return response()->json(['error' => $e->getMessage()], 422);
         }
     }
 
@@ -60,7 +61,7 @@ class EmpresasController extends Controller
             $empresa = $this->empresas->findOrFail($id);
             return response()->json(['data' => $empresa], 200);
         } catch (\Exception $e) {
-            return response()->json(['error' => $e->getMessage()], 401);
+            return response()->json(['error' => $e->getMessage()]);
         }
     }
 
@@ -73,7 +74,7 @@ class EmpresasController extends Controller
             $empresa->update($data);
             return response()->json($empresa, 200);
         } catch (\Exception $e) {
-            return response()->json(['error' => $e->getMessage()], 401);
+            return response()->json(['error' => $e->getMessage()]);
         }
     }
 
@@ -91,7 +92,7 @@ class EmpresasController extends Controller
             $empresa->delete();
             return response()->json($empresa, 200);
         } catch (\Exception $e) {
-            return response()->json(['error' => $e->getMessage()], 401);
+            return response()->json(['error' => $e->getMessage()]);
         }
     }
 }

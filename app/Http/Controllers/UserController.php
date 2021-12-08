@@ -45,7 +45,7 @@ class UserController extends Controller
                 'data' => $user
             ], 200);
         } catch (\Exception $e) {
-            return response()->json(['error' => $e->getMessage()], 401);
+            return response()->json(['error' => $e->getMessage()]);
         }
     }
 
@@ -65,7 +65,7 @@ class UserController extends Controller
                 'data' => $user
             ], 200);
         } catch (\Exception $e) {
-            return response()->json(['error' => $e->getMessage()], 401);
+            return response()->json(['error' => $e->getMessage()]);
         }
     }
 
@@ -89,7 +89,7 @@ class UserController extends Controller
                 'data' => $user
             ], 200);
         } catch (\Exception $e) {
-            return response()->json(['error' => $e->getMessage()], 401);
+            return response()->json(['error' => $e->getMessage()]);
         }
     }
 
@@ -110,7 +110,7 @@ class UserController extends Controller
                 'data' => $user
             ], 200);
         } catch (\Exception $e) {
-            return response()->json(['error' => $e->getMessage()], 401);
+            return response()->json(['error' => $e->getMessage()]);
         }
     }
 }

@@ -26,7 +26,7 @@ class ConfigTarefasController extends Controller
             $configTarefas = ConfigTarefas::with('configAtividades')->get();
             return response()->json($configTarefas, 200);
         } catch (\Exception $e) {
-            return response()->json(['error' => $e->getMessage()], 401);
+            return response()->json(['error' => $e->getMessage()]);
         }
     }
 
@@ -44,7 +44,7 @@ class ConfigTarefasController extends Controller
             $configTarefas = $this->configTarefas->create($data);
             return response()->json($configTarefas, 200);
         } catch (\Exception $e) {
-            return response()->json(['error' => $e->getMessage()], 401);
+            return response()->json(['error' => $e->getMessage()]);
         }
     }
 
@@ -60,7 +60,7 @@ class ConfigTarefasController extends Controller
             $configTarefas = $this->configTarefas->findOrFail($id);
             return response()->json(['data' => $configTarefas], 200);
         } catch (\Exception $e) {
-            return response()->json(['error' => $e->getMessage()], 401);
+            return response()->json(['error' => $e->getMessage()]);
         }
     }
 
@@ -80,7 +80,7 @@ class ConfigTarefasController extends Controller
             $configTarefas->update($data);
             return response()->json($configTarefas, 200);
         } catch (\Exception $e) {
-            return response()->json(['error' => $e->getMessage()], 401);
+            return response()->json(['error' => $e->getMessage()]);
         }
     }
 
@@ -98,7 +98,7 @@ class ConfigTarefasController extends Controller
             $configTarefas->delete();
             return response()->json($configTarefas, 200);
         } catch (\Exception $e) {
-            return response()->json(['error' => $e->getMessage()], 401);
+            return response()->json(['error' => $e->getMessage()]);
         }
     }
 }

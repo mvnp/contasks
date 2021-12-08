@@ -27,7 +27,7 @@ class ConfigSetoresController extends Controller
             $configSetores = $this->configSetores->orderBy('id', 'desc')->get();
             return response()->json($configSetores, 200);
         } catch (\Exception $e) {
-            return response()->json(['error' => $e->getMessage()], 401);
+            return response()->json(['error' => $e->getMessage()]);
         }
     }
 
@@ -46,7 +46,7 @@ class ConfigSetoresController extends Controller
             $configSetores = $this->configSetores->create($data);
             return response()->json($configSetores, 200);
         } catch (\Exception $e) {
-            return response()->json(['error' => $e->getMessage()], 401);
+            return response()->json(['error' => $e->getMessage()]);
         }
     }
 
@@ -62,7 +62,7 @@ class ConfigSetoresController extends Controller
             $configSetores = $this->configSetores->findOrFail($id);
             return response()->json(['data' => $configSetores], 200);
         } catch (\Exception $e) {
-            return response()->json(['error' => $e->getMessage()], 401);
+            return response()->json(['error' => $e->getMessage()]);
         }
     }
 
@@ -82,7 +82,7 @@ class ConfigSetoresController extends Controller
             $configSetores->update($data);
             return response()->json($configSetores, 200);
         } catch (\Exception $e) {
-            return response()->json(['error' => $e->getMessage()], 401);
+            return response()->json(['error' => $e->getMessage()]);
         }
     }
 
@@ -100,7 +100,7 @@ class ConfigSetoresController extends Controller
             $configSetores->delete();
             return response()->json($configSetores, 200);
         } catch (\Exception $e) {
-            return response()->json(['error' => $e->getMessage()], 401);
+            return response()->json(['error' => $e->getMessage()]);
         }
     }
 }
